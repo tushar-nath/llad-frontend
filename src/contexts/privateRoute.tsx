@@ -1,8 +1,19 @@
+import { useContext, useEffect } from "react";
+import { UserContext } from "./userContext";
+import { Navigate, Outlet } from "react-router-dom";
+
 const PrivateRoute = () => {
-  return null;
-  // const { state } = useContext(AuthContext);
-  // const { user } = state;
-  // return user && user.token ? (React.createElement(Route, Object.assign({}, rest), children)) : (React.createElement(Navigate, { to: "/signin" }));
+  const { user } = useContext(UserContext);
+
+  const checkShouldRender = () => {
+    return user ? <Outlet /> : <Navigate to="/" />;
+  };
+
+  useEffect(() => {
+    checkShouldRender();
+  }, [user]);
+
+  return checkShouldRender();
 };
 
 export default PrivateRoute;

@@ -1,24 +1,62 @@
-import { useEffect, useState } from "react";
-import CustomInput from "../../components/auth/customInput";
-import { EmailIcon } from "../../svgs/emailIcon";
-import { GoogleIcon } from "../../svgs/googleIcon";
-import { KeyIcon } from "../../svgs/keyIcon";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthHeader from "../../components/auth/authHeader";
-import AuthButton from "../../components/auth/authButton";
 import RegisterButton from "../../components/register/registerButton";
+import { UserContext } from "../../contexts/userContext";
+import axios from "axios";
 
 const Register = () => {
   const [norwegianLevel, setNorwegianLevel] = useState<string>("");
   const navigate = useNavigate();
+  const { user, storeUser } = useContext(UserContext);
 
   useEffect(() => {
-    // register endpoint here
-    if (norwegianLevel) {
-      console.log(norwegianLevel);
+    const user = localStorage.getItem("user");
+    if (user && JSON.parse(user).currentNorwegianSkill) {
       navigate("/dashboard");
     }
-  }, [norwegianLevel]);
+  }, []);
+
+  const updateAccount = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/updateNorwegianLevel`,
+        {
+          userId: user?._id,
+          currentNorwegianSkill: norwegianLevel,
+        },
+      );
+      storeUser(res.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
+  console.log(user);
+  console.log(norwegianLevel);
+
+  useEffect(() => {
+    const url = window.location.href;
+    const urlParams = new URL(url);
+    const userData = urlParams.searchParams.get("user");
+
+    console.log(userData);
+
+    if (userData) {
+      const user = JSON.parse(userData);
+      storeUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(user);
+    if (norwegianLevel && user) {
+      updateAccount();
+      navigate("/dashboard");
+    }
+  }, [norwegianLevel, user]);
 
   return (
     <div className="bg-white w-full h-[100vh]">

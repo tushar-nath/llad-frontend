@@ -18,7 +18,7 @@ const Dashboard = () => {
       <button
         className="absolute bottom-4 left-4"
         onClick={() => {
-          localStorage.removeItem("token");
+          localStorage.removeItem("user");
           navigate("/");
         }}
       >

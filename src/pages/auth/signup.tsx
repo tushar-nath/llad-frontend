@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CustomInput from "../../components/auth/customInput";
 import { EmailIcon } from "../../svgs/emailIcon";
 import { GoogleIcon } from "../../svgs/googleIcon";
@@ -7,15 +7,43 @@ import { useNavigate } from "react-router-dom";
 import { ProfileIcon } from "../../svgs/profileIcon";
 import AuthHeader from "../../components/auth/authHeader";
 import AuthButton from "../../components/auth/authButton";
+import axios from "axios";
+import { UserContext } from "../../contexts/userContext";
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [fullName, setFullName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+  const { storeUser } = useContext(UserContext);
 
-  const handleAuth = () => {
-    navigate("/register");
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, []);
+
+  const handleAuth = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/signup`,
+        {
+          name: fullName,
+          email: email,
+          password: password,
+        },
+      );
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      storeUser(res.data.user);
+      navigate("/register");
+    } catch (error: any) {
+      console.error(error);
+      if (error.response.status === 400) {
+        alert("Account already exists, please login.");
+        return;
+      }
+    }
   };
 
   return (

@@ -5,20 +5,20 @@ import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import "./styles/index.css";
 import Register from "./pages/register/register";
+import { UserProvider } from "./contexts/userContext";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      {/* <Route element={<PrivateRoute />}> */}
-      <Route path="/dashboard" element={<Dashboard />} />
-      {/* </Route> */}
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/register" element={<Register />} />
-      {/* 
-        <Route path="*" element={<PageNotFound />} />
-        <Route path="/notauthorized" element={<NotAuthorized />} /> */}
-    </Routes>
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </UserProvider>
   );
 }
 
