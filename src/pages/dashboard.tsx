@@ -1,29 +1,36 @@
-import { useNavigate } from "react-router-dom";
-import { LogoutIcon } from "../svgs/logoutIcon";
+import GetStarted from "../components/dashboard/getStarted";
+import Revision from "../components/dashboard/revision";
+import Stats from "../components/dashboard/stats";
+import Sidebar from "../components/sidebar/sidebar";
+import { NotificationIcon } from "../svgs/notificationIcon";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   return (
-    <div className="bg-white w-full h-[100vh] flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center">
-        <div className="flex gap-1.5 items-center justify-center">
-          <h1 className="text-2xl font-bold text-gray-900 uppercase">
-            Welcome to
-          </h1>
-          <p className="text-[#7573FF] font-bold text-2xl uppercase">
-            Learning App
-          </p>
+    <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
+      <Sidebar />
+      <div className="flex flex-col gap-10 w-full">
+        {/* Header */}
+        <div className="flex justify-between w-full">
+          <div className="flex flex-row gap-1.5 py-2">
+            <h1 className="text-3xl font-bold text-gray-900">Welcome To</h1>
+            <p className="text-[#7573FF] font-bold text-3xl">Learning App</p>
+          </div>
+          <div>
+            <button>
+              <NotificationIcon />
+            </button>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex flex-row gap-12">
+          <div className="flex flex-col gap-8">
+            <GetStarted />
+            <Stats />
+          </div>
+          <Revision />
         </div>
       </div>
-      <button
-        className="absolute bottom-4 left-4"
-        onClick={() => {
-          localStorage.removeItem("user");
-          navigate("/");
-        }}
-      >
-        <LogoutIcon />
-      </button>
     </div>
   );
 };

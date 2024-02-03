@@ -12,9 +12,9 @@ function App() {
     <UserProvider>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
+        {/* <Route element={<PrivateRoute />}> */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        {/* </Route> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/register" element={<Register />} />
       </Routes>

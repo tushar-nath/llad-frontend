@@ -6,12 +6,14 @@ interface UserContextProps {
     email: string;
     name: string;
     currentNorwegianSkill: string;
+    profilePicture: string;
   } | null;
   storeUser: (userData: {
     _id: string;
     email: string;
     name: string;
     currentNorwegianSkill: string;
+    profilePicture: string;
   }) => void;
   removeUser: () => void;
 }
@@ -27,6 +29,7 @@ const getInitialUser = (): {
   email: string;
   name: string;
   currentNorwegianSkill: string;
+  profilePicture: string;
 } | null => {
   try {
     const rawUser = localStorage.getItem("user");
@@ -47,6 +50,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     email: string;
     name: string;
     currentNorwegianSkill: string;
+    profilePicture: string;
   } | null>(initialUser);
 
   const storeUser = useCallback(
@@ -55,6 +59,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
       email: string;
       name: string;
       currentNorwegianSkill: string;
+      profilePicture: string;
     }) => {
       setUser(userData);
       localStorage.setItem("user", JSON.stringify(userData));
