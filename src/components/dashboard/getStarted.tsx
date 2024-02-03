@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { CreateIconWhite } from "../../svgs/createIconWhite";
 import { FormIcon } from "../../svgs/formIcon";
 import { GroupWhiteIcon } from "../../svgs/groupWhiteIcon";
@@ -5,22 +6,27 @@ import { NoteIcon } from "../../svgs/noteIcon";
 import GetStartedCard from "./getStartedCard";
 
 const GetStarted = () => {
+  const navigate = useNavigate();
   const Items = [
     {
       title: "Create a Flash Card",
       icon: <CreateIconWhite />,
+      navigate: "/create",
     },
     {
       title: "Your Library",
       icon: <GroupWhiteIcon />,
+      navigate: "/library",
     },
     {
       title: "Improve Your Vocabulary",
       icon: <NoteIcon />,
+      navigate: "/improve",
     },
     {
       title: "Fill Forms",
       icon: <FormIcon />,
+      navigate: "/forms",
     },
   ];
 
@@ -30,7 +36,10 @@ const GetStarted = () => {
       <div className="flex flex-wrap justify-center">
         {Items.map((item) => {
           return (
-            <button className="w-1/2 p-3">
+            <button
+              className="w-1/2 p-3"
+              onClick={() => navigate(item.navigate)}
+            >
               <GetStartedCard title={item.title} icon={item.icon} />
             </button>
           );
