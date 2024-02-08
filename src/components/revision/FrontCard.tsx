@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { DotsIcon } from "../../svgs/dotsIcon";
+import { StarIcon } from "../../svgs/starIcon";
+import { EditIcon } from "../../svgs/editIcon";
 
 export const FrontCard = ({
   card,
@@ -33,8 +35,9 @@ export const FrontCard = ({
               setIsFlipped(false);
               setShowMenu(false);
             }}
-            className="border-b border-gray-400 pb-2"
+            className="border-b border-gray-400 pb-2 flex flex-row gap-2 items-center"
           >
+            <EditIcon />
             Edit Card
           </button>
           <button
@@ -42,7 +45,9 @@ export const FrontCard = ({
               setIsFlipped(false);
               setShowMenu(false);
             }}
+            className="flex flex-row gap-2 items-center"
           >
+            <StarIcon />
             Star
           </button>
         </div>
