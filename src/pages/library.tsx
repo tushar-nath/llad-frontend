@@ -6,19 +6,25 @@ import { LanguageIcon } from "../svgs/languageIcon";
 import { NotificationIcon } from "../svgs/notificationIcon";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/userContext";
+import { BeatLoader } from "react-spinners";
 
 const Library = () => {
   const [cards, setCards] = useState<any[]>([]);
   const { user } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getCards = async () => {
     try {
+      setIsLoading(true);
       const res = await axios.get(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
       );
       setCards(res.data.cards);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -53,7 +59,13 @@ const Library = () => {
 
         {/* Main Content */}
         <LibraryHeader />
-        <LibraryTable cards={cards} />
+        {isLoading ? (
+          <div className="flex items-center justify-center h-[70vh] w-full">
+            <BeatLoader color="#7573FF" />
+          </div>
+        ) : (
+          <LibraryTable cards={cards} />
+        )}
       </div>
     </div>
   );
