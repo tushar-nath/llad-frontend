@@ -21,7 +21,7 @@ const GetStarted = () => {
     {
       title: "Improve Your Vocabulary",
       icon: <NoteIcon />,
-      navigate: "/improve",
+      navigate: "/revision",
     },
     {
       title: "Fill Forms",
