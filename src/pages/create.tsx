@@ -55,7 +55,7 @@ const Create = () => {
         <div className="flex justify-between w-full">
           <div className="flex flex-row gap-1.5 py-2">
             <h1 className="text-3xl font-bold text-gray-900">Create a</h1>
-            <p className="text-[#7573FF] font-bold text-3xl">Flash Card</p>
+            <p className="text-bluePrimary font-bold text-3xl">Flash Card</p>
           </div>
           <div className="flex items-center gap-4">
             <button>
@@ -63,7 +63,7 @@ const Create = () => {
             </button>
             <div className="flex flex-row gap-4">
               <LanguageIcon />
-              <select className="w-24 outline-none text-[#7573FF] font-semibold">
+              <select className="w-24 outline-none text-bluePrimary font-semibold">
                 <option value="english">English</option>
                 <option value="norwegian">Norwegian</option>
               </select>
@@ -92,7 +92,7 @@ const Create = () => {
         </div>
         <div className="flex items-center justify-center">
           <button
-            className="border-[1.5px] border-[#7573FF] px-14 transition-all duration-300 hover:shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl text-[#7573FF] font-bold text-lg py-3"
+            className="border-[1.5px] border-bluePrimary px-14 transition-all duration-300 hover:shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl text-bluePrimary font-bold text-lg py-3"
             onClick={handleSave}
           >
             Create

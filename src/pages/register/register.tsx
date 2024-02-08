@@ -78,7 +78,7 @@ const Register = () => {
                   My Native Language:
                 </h2>
                 <select
-                  className="text-[#7573FF] placeholder-[#7573FF] outline-none text-sm font-semibold bg-transparent
+                  className="text-bluePrimary placeholder-bluePrimary outline-none text-sm font-semibold bg-transparent
                 -500"
                 >
                   <option value="English">English</option>

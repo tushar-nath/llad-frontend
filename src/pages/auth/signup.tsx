@@ -90,7 +90,7 @@ const SignUp = () => {
                 <p className="text-gray-700 text-sm">
                   Already have an account?{" "}
                   <button
-                    className="text-[#7573FF] hover:text-[#8b89ff]"
+                    className="text-bluePrimary hover:text-[#8b89ff]"
                     onClick={() => navigate("/")}
                   >
                     Click here

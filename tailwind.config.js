@@ -5,7 +5,11 @@ module.exports = {
     fontFamily: {
       custom1: ["Custom-1", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        bluePrimary: "#7573FF",
+      },
+    },
   },
   plugins: [],
 };

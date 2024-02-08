@@ -83,7 +83,7 @@ const Login = () => {
                 setValue={setPassword}
               />
               <div className="flex justify-end">
-                <button className="text-[#7573FF] hover:text-[#8b89ff] font-medium text-sm">
+                <button className="text-bluePrimary hover:text-[#8b89ff] font-medium text-sm">
                   Forgot Password?
                 </button>
               </div>
@@ -100,7 +100,7 @@ const Login = () => {
                 <p className="text-gray-700 text-sm">
                   Don't have an account?{" "}
                   <button
-                    className="text-[#7573FF] hover:text-[#8b89ff]"
+                    className="text-bluePrimary hover:text-[#8b89ff]"
                     onClick={() => navigate("/signup")}
                   >
                     Create one
