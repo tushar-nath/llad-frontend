@@ -6,6 +6,7 @@ import { DashboardIcon } from "../../svgs/dashboardIcon";
 import { CreateIcon } from "../../svgs/createIcon";
 import { GroupIcon } from "../../svgs/groupIcon";
 import { LogoutIcon } from "../../svgs/logoutIcon";
+import { RevisionIconSidebar } from "../../svgs/revisionIconSidebar";
 
 interface ExpandedSidebarProps {
   expanded: boolean;
@@ -52,6 +53,14 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
           >
             <GroupIcon
               size={URL.includes("library") && !expanded ? "56" : "36"}
+            />
+          </button>
+          <button
+            onClick={() => navigate("/revision")}
+            className={`flex items-center justify-between rounded-[3rem] px-0`}
+          >
+            <RevisionIconSidebar
+              size={URL.includes("revision") && !expanded ? "56" : "36"}
             />
           </button>
           <button

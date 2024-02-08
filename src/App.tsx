@@ -8,6 +8,7 @@ import Register from "./pages/register/register";
 import { UserProvider } from "./contexts/userContext";
 import Create from "./pages/create";
 import Library from "./pages/library";
+import Revision from "./pages/revision";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/create" element={<Create />} />
           <Route path="/library" element={<Library />} />
+          <Route path="/revision" element={<Revision />} />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/register" element={<Register />} />

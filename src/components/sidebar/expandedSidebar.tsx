@@ -8,6 +8,7 @@ import { ChevronIconRight } from "../../svgs/chevronIconRight";
 import { DashboardIcon } from "../../svgs/dashboardIcon";
 import { CreateIcon } from "../../svgs/createIcon";
 import { GroupIcon } from "../../svgs/groupIcon";
+import { RevisionIconSidebar } from "../../svgs/revisionIconSidebar";
 
 interface ExpandedSidebarProps {
   expanded: boolean;
@@ -87,6 +88,21 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
             )}
             <GroupIcon
               size={URL.includes("library") && !expanded ? "56" : "36"}
+            />
+          </button>
+          <button
+            onClick={() => navigate("/revision")}
+            className={`flex items-center justify-between rounded-[3rem] py-2 px-6 w-full ${URL.includes("revision") && expanded && "bg-bluePrimary"}`}
+          >
+            {expanded && (
+              <h2
+                className={`${URL.includes("revision") ? "text-white" : "text-gray-900"} font-semibold text-base`}
+              >
+                Revisions
+              </h2>
+            )}
+            <RevisionIconSidebar
+              size={URL.includes("revision") && !expanded ? "56" : "36"}
             />
           </button>
           <button
