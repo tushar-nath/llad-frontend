@@ -1,10 +1,33 @@
+import axios from "axios";
 import { LibraryHeader } from "../components/library/LibraryHeader";
 import { LibraryTable } from "../components/library/LibraryTable";
 import Sidebar from "../components/sidebar/sidebar";
 import { LanguageIcon } from "../svgs/languageIcon";
 import { NotificationIcon } from "../svgs/notificationIcon";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../contexts/userContext";
 
 const Library = () => {
+  const [cards, setCards] = useState<any[]>([]);
+  const { user } = useContext(UserContext);
+
+  const getCards = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
+      );
+      setCards(res.data.cards);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCards();
+  }, []);
+
+  console.log(cards);
+
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
       <Sidebar />
@@ -30,7 +53,7 @@ const Library = () => {
 
         {/* Main Content */}
         <LibraryHeader />
-        <LibraryTable />
+        <LibraryTable cards={cards} />
       </div>
     </div>
   );
