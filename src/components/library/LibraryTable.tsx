@@ -67,7 +67,9 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
     return {
       edit: "",
       norwegianWord: card.back.text,
+      norwegianExample: card.back.example,
       englishWord: card.front.text,
+      englishExample: card.front.example,
       category: card.tags,
       dateModified: moment(card.updatedAt).format("DD/MM/YYYY"),
     };

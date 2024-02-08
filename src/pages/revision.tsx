@@ -3,6 +3,7 @@ import { LanguageIcon } from "../svgs/languageIcon";
 import { NotificationIcon } from "../svgs/notificationIcon";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/userContext";
+import CardPreview from "../components/revision/CardPreview";
 
 const Revision = () => {
   const { user } = useContext(UserContext);
@@ -31,7 +32,14 @@ const Revision = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center h-[70vh]">
-          <h1 className="text-2xl font-bold text-bluePrimary">Coming Soon</h1>
+          <CardPreview
+            card={{
+              englishWord: "Perfect",
+              englishExample: "I am perfect today",
+              norwegianWord: "Perfekt",
+              norwegianExample: "Jeg er perfekt i dag",
+            }}
+          />
         </div>
       </div>
     </div>
