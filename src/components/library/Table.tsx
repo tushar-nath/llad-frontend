@@ -1,13 +1,16 @@
 import { useTable } from "react-table";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import { FrontCard } from "../revision/FrontCard";
 import { BackCard } from "../revision/BackCard";
+import { CardContext } from "../../contexts/cardContext";
+import { useNavigate } from "react-router-dom";
 
 export const Table = ({ columns, data }: any) => {
   const [showCardPreview, setShowCardPreview] = useState<any>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
-
+  const { storeCard } = useContext(CardContext);
+  const navigate = useNavigate();
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns: columns, data });
 
@@ -57,7 +60,13 @@ export const Table = ({ columns, data }: any) => {
                         ? "text-gray-500 text-sm"
                         : "font-semibold"
                     } ${cellIndex === 0 ? "text-sm truncate" : ""}`}
-                    onClick={() => setShowCardPreview(row.original)}
+                    onClick={() => {
+                      if (cellIndex === 0) {
+                        storeCard(row.original);
+                        navigate("/edit");
+                      }
+                      setShowCardPreview(row.original);
+                    }}
                   >
                     {cell.render("Cell")}
                   </td>

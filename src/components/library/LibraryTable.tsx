@@ -65,6 +65,7 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
 
   const data: any[] = cards.map((card) => {
     return {
+      _id: card._id,
       edit: "",
       norwegianWord: card.back.text,
       norwegianExample: card.back.example,
