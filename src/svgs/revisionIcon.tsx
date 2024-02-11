@@ -8,10 +8,10 @@ export const RevisionIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="44" height="37" rx="6" fill="url(#pattern0)" />
+      <rect width="44" height="37" rx="6" fill="url(#pattern123)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern123"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

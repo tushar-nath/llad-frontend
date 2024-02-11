@@ -21,7 +21,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="h-[85vh] w-[450px] rounded-3xl shadow-[1px_4px_46px_0px_#0000004A]">
+    <div className="h-full w-[450px] rounded-3xl shadow-[1px_4px_46px_0px_#0000004A]">
       <div className="flex items-center justify-center py-7 relative">
         <div className="flex items-center justify-between w-full px-8 mr-3">
           {expanded && (

@@ -44,11 +44,11 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
         return (
           <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
-            <h1 className="text-base font-bold text-gray-900">Category</h1>
+            <h1 className="text-base font-bold text-gray-900">Tags</h1>
           </div>
         );
       },
-      accessor: "category",
+      accessor: "tags",
     },
     {
       Header: (row: any) => {
@@ -70,7 +70,7 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
       norwegianExample: card.back.example,
       englishWord: card.front.text,
       englishExample: card.front.example,
-      category: card.tags,
+      tags: card.tags.join(", "),
       dateModified: moment(card.updatedAt).format("DD/MM/YYYY"),
     };
   });

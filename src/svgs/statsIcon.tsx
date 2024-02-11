@@ -8,10 +8,10 @@ export const StatsIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="29" height="29" rx="7" fill="url(#pattern0)" />
+      <rect width="29" height="29" rx="7" fill="url(#pattern0123)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern0123"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

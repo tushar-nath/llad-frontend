@@ -4,9 +4,12 @@ import { NotificationIcon } from "../svgs/notificationIcon";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/userContext";
 import CardPreview from "../components/revision/CardPreview";
+import { RevisionDashboard } from "../components/revision/RevisionDashboard";
+import { RevisionGraph } from "../components/revision/RevisionGraph";
 
 const Revision = () => {
   const { user } = useContext(UserContext);
+  const [showCardPreview, setShowCardPreview] = useState<boolean>(false);
 
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
@@ -31,16 +34,27 @@ const Revision = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center h-[70vh]">
-          <CardPreview
-            card={{
-              englishWord: "Perfect",
-              englishExample: "I am perfect today",
-              norwegianWord: "Perfekt",
-              norwegianExample: "Jeg er perfekt i dag",
-            }}
-          />
-        </div>
+        {showCardPreview ? (
+          <div className="flex flex-col items-center justify-center h-[70vh]">
+            <CardPreview
+              card={{
+                englishWord: "Perfect",
+                englishExample: "I am perfect today",
+                norwegianWord: "Perfekt",
+                norwegianExample: "Jeg er perfekt i dag",
+              }}
+            />
+          </div>
+        ) : (
+          <div className="flex gap-10">
+            <div style={{ flex: "1 1 auto" }}>
+              <RevisionDashboard setShowCardPreview={setShowCardPreview} />
+            </div>
+            <div>
+              <RevisionGraph />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -26,6 +26,8 @@ const CreateBackSide = ({
 }: CreateBackSideProps) => {
   const [addTagValue, setAddTagValue] = useState<string>("");
 
+  const defaultTags = ["noun", "verb", "adjective"];
+
   console.log("tags", tags);
   return (
     <div className="w-[50%] h-[520px] bg-[#F9F9F9] rounded-[4rem] border-[2px] border-bluePrimary p-8 flex flex-col gap-10">
@@ -63,6 +65,17 @@ const CreateBackSide = ({
         </div>
         <div className="flex flex-wrap pt-5 gap-3">
           <h1 className="text-lg font-bold text-bluePrimary">Tags:</h1>
+          <div className="flex flex-wrap gap-3">
+            {defaultTags.map((tag, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-center w-20 h-8 px-2 rounded-lg border-[1.5px] border-bluePrimary bg-white text-gray-600 font-bold shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)]"
+                style={{ flexBasis: "25%" }}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
           {tags.map((tag, index) => (
             <div
               key={index}
