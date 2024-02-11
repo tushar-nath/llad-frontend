@@ -52,11 +52,9 @@ export const FrontCard = ({
           </button>
         </div>
       )}
-      <h1 className="text-3xl font-bold text-bluePrimary">
-        {card.englishWord}
-      </h1>
+      <h1 className="text-3xl font-bold text-bluePrimary">{card.front.text}</h1>
       <h2 className="text-lg font-semibold text-gray-700">
-        {card.englishExample}
+        {card.front.example}
       </h2>
       <button>
         <h2 className="text-xs font-bold text-gray-700 absolute bottom-8 right-10">

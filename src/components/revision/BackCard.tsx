@@ -53,11 +53,13 @@ export const BackCard = ({
           </button>
         </div>
       )}
-      <h1 className="text-3xl font-bold text-bluePrimary">
-        {card.norwegianWord}
-      </h1>
+      <h1 className="text-3xl font-bold text-bluePrimary">{card.back.text}</h1>
       <h2 className="text-lg font-semibold text-gray-700">
-        {card.norwegianExample}
+        {card.back.example}
+      </h2>
+      <h2>
+        {card.note}
+        {card.tags.join(", ")}
       </h2>
       <button>
         <h2 className="text-xs font-bold text-gray-700 absolute bottom-8 right-10">
