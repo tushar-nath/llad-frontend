@@ -29,7 +29,7 @@ const CardPreview = ({
         }
       );
       updateIndex((prev: number) => prev + 1);
-      // getCards();
+      setIsFlipped(false);
     } catch (error) {
       console.log(error);
     }
