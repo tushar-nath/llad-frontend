@@ -12,7 +12,7 @@ export const FrontCard = ({
 }) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  console.log(card);
+  console.log("hehehehe", card);
 
   return (
     <div
@@ -52,9 +52,11 @@ export const FrontCard = ({
           </button>
         </div>
       )}
-      <h1 className="text-3xl font-bold text-bluePrimary">{card.front.text}</h1>
-      <h2 className="text-lg font-semibold text-gray-700">
-        {card.front.example}
+      <h1 className="text-3xl font-bold text-bluePrimary">
+        {card?.front?.text ? card.front.text : card.englishWord}
+      </h1>
+      <h2 className="text-lg font-semibold text-gray-700 italic">
+        {card?.front?.example ? card.front.example : card.englishExample}
       </h2>
       <button>
         <h2 className="text-xs font-bold text-gray-700 absolute bottom-8 right-10">

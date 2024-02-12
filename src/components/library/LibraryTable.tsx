@@ -73,6 +73,7 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
       englishExample: card.front.example,
       tags: card.tags.join(", "),
       dateModified: moment(card.updatedAt).format("DD/MM/YYYY"),
+      note: card.note,
     };
   });
 

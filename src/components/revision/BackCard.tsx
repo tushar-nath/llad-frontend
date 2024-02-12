@@ -53,14 +53,34 @@ export const BackCard = ({
           </button>
         </div>
       )}
-      <h1 className="text-3xl font-bold text-bluePrimary">{card.back.text}</h1>
-      <h2 className="text-lg font-semibold text-gray-700">
-        {card.back.example}
+
+      <h1 className="text-3xl font-bold text-bluePrimary">
+        {card?.front?.text ? card.front.text : card.englishWord}
+      </h1>
+      <h2 className="text-lg font-semibold text-gray-700 italic mb-4">
+        {card?.front?.example ? card.front.example : card.englishExample}
       </h2>
-      <h2>
-        {card.note}
-        {card.tags.join(", ")}
+
+      <h1 className="text-3xl font-bold text-bluePrimary">
+        {card?.back?.text ? card.back.text : card.norwegianWord}
+      </h1>
+      <h2 className="text-lg font-semibold text-gray-700 italic">
+        {card?.back?.example ? card.back.example : card.norwegianExample}
       </h2>
+      <div className="flex flex-row gap-1.5 items-center justify-between w-full px-8 mt-4">
+        <div className="flex flex-row gap-1.5 items-center">
+          <h2 className="text-base font-bold text-bluePrimary">Note:</h2>
+          <h2 className="text-base font-bold text-gray-900">
+            {card.note ? card.note : ""}
+          </h2>
+        </div>
+        <div className="flex flex-row gap-1.5 items-center">
+          <h2 className="text-base font-bold text-bluePrimary">Tags:</h2>
+          <h2 className="text-base font-bold text-gray-900">
+            {Array.isArray(card.tags) ? card.tags.join(", ") : card.tags}
+          </h2>
+        </div>
+      </div>
       <button>
         <h2 className="text-xs font-bold text-gray-700 absolute bottom-8 right-10">
           Tap to Flip the Card

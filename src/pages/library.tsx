@@ -17,7 +17,7 @@ const Library = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
       );
       setCards(res.data.cards);
       setIsLoading(false);
@@ -62,6 +62,12 @@ const Library = () => {
         {isLoading ? (
           <div className="flex items-center justify-center h-[70vh] w-full">
             <BeatLoader color="#7573FF" />
+          </div>
+        ) : cards && cards.length === 0 ? (
+          <div className="flex items-center justify-center h-[70vh] w-full">
+            <h1 className="text-2xl text-gray-800 font-semibold">
+              You have no cards in your library
+            </h1>
           </div>
         ) : (
           <LibraryTable cards={cards} />
