@@ -8,8 +8,8 @@ import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
 
 const ResetPassword = () => {
-  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
 
@@ -36,24 +36,24 @@ const ResetPassword = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const url = window.location.href;
+    const token = url.split("?")[1];
+    setToken(token);
+  });
+
   const handleReset = async () => {
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/login`,
+      await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/reset-password`,
         {
-          email: email,
-          password: password,
+          token: token,
+          newPassword: password,
         }
       );
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      storeUser(res.data.user);
-      navigate("/dashboard");
+      alert("Password Reset Successfully, proceed with login");
     } catch (error: any) {
-      console.error(error);
-      if (error.response.status === 400) {
-        alert("Invalid credentials, please create an account.");
-        return;
-      }
+      alert("Failed to Reset Password, please try again");
     }
   };
 
