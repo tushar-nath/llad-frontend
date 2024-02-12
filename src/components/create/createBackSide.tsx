@@ -68,8 +68,7 @@ const CreateBackSide = ({
             {defaultTags.map((tag, index) => (
               <button
                 key={index}
-                className="flex items-center justify-center w-20 h-8 px-2 rounded-lg border-[1.5px] border-bluePrimary bg-white text-gray-600 font-bold shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)]"
-                style={{ flexBasis: "25%" }}
+                className="flex items-center justify-center  h-8 px-2 rounded-lg border-[1.5px] border-bluePrimary bg-white text-bluePrimary font-bold shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)]"
                 onClick={() => setTags((prev) => [...prev, tag])}
               >
                 {tag}
@@ -79,8 +78,8 @@ const CreateBackSide = ({
           {tags.map((tag, index) => (
             <div
               key={index}
-              className="flex items-center justify-center w-20 h-8 rounded-lg border-[1.5px] border-bluePrimary bg-white text-gray-600 font-bold shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)]"
-              style={{ flexBasis: "25%" }}
+              className="flex items-center justify-center px-2 h-8 rounded-lg border-[1.5px] border-bluePrimary bg-white text-gray-600 font-bold shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)]"
+              // style={{ flexBasis: "25%" }}
             >
               {tag}
             </div>
