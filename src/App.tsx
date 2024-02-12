@@ -11,6 +11,7 @@ import Library from "./pages/library";
 import Revision from "./pages/revision";
 import { CardProvider } from "./contexts/cardContext";
 import Edit from "./pages/edit";
+import ResetPassword from "./pages/auth/resetPassword";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/revision" element={<Revision />} />
             <Route path="/edit" element={<Edit />} />
           </Route>
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/register" element={<Register />} />
         </Routes>

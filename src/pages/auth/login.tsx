@@ -45,7 +45,7 @@ const Login = () => {
         {
           email: email,
           password: password,
-        },
+        }
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
       storeUser(res.data.user);
@@ -61,6 +61,24 @@ const Login = () => {
 
   const handleGoogleAuth = async () => {
     window.location.href = `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/auth/google`;
+  };
+
+  const handleResetPassword = async () => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/forgot-password`,
+        {
+          email: email,
+        }
+      );
+      alert("Password reset link sent to your email.");
+    } catch (error: any) {
+      console.error(error);
+      if (error.response.status === 400) {
+        alert("Invalid email, please create an account.");
+        return;
+      }
+    }
   };
 
   return (
@@ -83,7 +101,10 @@ const Login = () => {
                 setValue={setPassword}
               />
               <div className="flex justify-end">
-                <button className="text-bluePrimary hover:text-[#8b89ff] font-medium text-sm">
+                <button
+                  className="text-bluePrimary hover:text-[#8b89ff] font-medium text-sm"
+                  onClick={handleResetPassword}
+                >
                   Forgot Password?
                 </button>
               </div>
