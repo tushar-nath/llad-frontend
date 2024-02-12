@@ -42,7 +42,7 @@ const CardPreview = ({
           <FrontCard key="front" card={card} setIsFlipped={setIsFlipped} />
           <BackCard key="back" card={card} setIsFlipped={setIsFlipped} />
         </ReactCardFlip>
-        <GradeSelector handleGrade={handleGrade} card={card} />
+        {isFlipped && <GradeSelector handleGrade={handleGrade} card={card} />}
       </div>
     </div>
   );
