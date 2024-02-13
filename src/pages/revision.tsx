@@ -15,6 +15,7 @@ const Revision = () => {
   const [cards, setCards] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [index, setIndex] = useState<number>(0);
+  const [tags, setTags] = useState<string[]>([]);
 
   const getCards = async () => {
     try {
@@ -30,8 +31,21 @@ const Revision = () => {
     }
   };
 
+  const getTags = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`
+      );
+      console.log(res.data.tags);
+      setTags(res.data.tags);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getCards();
+    getTags();
     sortCards(cards);
   }, []);
 
@@ -39,6 +53,13 @@ const Revision = () => {
     return cards.sort((a, b) => {
       return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
     });
+  };
+
+  const filterTags = async (tag: string) => {
+    // Filter out cards with the selected tag
+    const filteredCards = cards.filter((card) => card.tags.includes(tag));
+    setCards(filteredCards);
+    setShowCardPreview(true);
   };
 
   return (
@@ -85,7 +106,11 @@ const Revision = () => {
         ) : (
           <div className="flex gap-10">
             <div style={{ flex: "1 1 auto" }}>
-              <RevisionDashboard setShowCardPreview={setShowCardPreview} />
+              <RevisionDashboard
+                setShowCardPreview={setShowCardPreview}
+                tags={tags}
+                filterTags={filterTags}
+              />
             </div>
             <div>
               <RevisionGraph />

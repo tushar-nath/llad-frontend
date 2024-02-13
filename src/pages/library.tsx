@@ -10,6 +10,7 @@ import { BeatLoader } from "react-spinners";
 
 const Library = () => {
   const [cards, setCards] = useState<any[]>([]);
+  console.log("hehehehehe", cards);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -31,6 +32,17 @@ const Library = () => {
   useEffect(() => {
     getCards();
   }, []);
+
+  console.log("sorting");
+
+  const handleSort = () => {
+    // Sorting cards by date modified
+    const sorted = cards.sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+    setCards(sorted);
+  };
 
   console.log(cards);
 
@@ -70,7 +82,7 @@ const Library = () => {
             </h1>
           </div>
         ) : (
-          <LibraryTable cards={cards} />
+          <LibraryTable cards={cards} handleSort={handleSort} />
         )}
       </div>
     </div>

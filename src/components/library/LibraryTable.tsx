@@ -3,8 +3,15 @@ import { EditIcon } from "../../svgs/editIcon";
 import { Table } from "./Table";
 import { FilterIcon } from "../../svgs/filterIcon";
 import moment from "moment";
+import { useEffect, useState } from "react";
 
-export const LibraryTable = ({ cards }: { cards: any[] }) => {
+export const LibraryTable = ({
+  cards,
+  handleSort,
+}: {
+  cards: any[];
+  handleSort: () => void;
+}) => {
   const columns = [
     {
       Header: "",
@@ -53,7 +60,10 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
     {
       Header: (row: any) => {
         return (
-          <div className="flex flex-row gap-1.5 items-center">
+          <div
+            className="flex flex-row gap-1.5 items-center"
+            // onClick={() => handleSort()}
+          >
             <FilterIcon />
             <h1 className="text-base font-bold text-gray-900">Date Modified</h1>
           </div>

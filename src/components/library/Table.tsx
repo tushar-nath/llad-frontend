@@ -1,4 +1,4 @@
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import { useContext, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import { FrontCard } from "../revision/FrontCard";
@@ -13,7 +13,7 @@ export const Table = ({ columns, data }: any) => {
   const { storeCard } = useContext(CardContext);
   const navigate = useNavigate();
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns: columns, data });
+    useTable({ columns: columns, data }, useSortBy);
 
   return (
     <>
@@ -29,7 +29,9 @@ export const Table = ({ columns, data }: any) => {
             >
               {headerGroup.headers.map((column: any, columnIndex: number) => (
                 <th
-                  {...column.getHeaderProps()}
+                  {...column.getHeaderProps(
+                    columnIndex === 4 ? column.getSortByToggleProps() : {}
+                  )}
                   key={`header-${columnIndex}`}
                   className="text-xs font-medium bg-white text-left text-gray-700 px-5 py-2 h-12 border-b border-gray-200 rounded-t-3xl sticky top-0"
                 >
