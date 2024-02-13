@@ -6,6 +6,8 @@ interface PasswordInputProps {
   placeholder: string;
   value: string;
   icon: React.ReactNode;
+  setStrength?: Dispatch<React.SetStateAction<number>>;
+  strength: number;
 }
 
 const PasswordInput = ({
@@ -13,9 +15,10 @@ const PasswordInput = ({
   setValue,
   value,
   icon,
+  setStrength,
+  strength,
 }: PasswordInputProps) => {
   const [passwordStrengthLevel, setPasswordStrengthLevel] = useState("");
-  const [strength, setStrength] = useState(0);
 
   const strengthColors = [
     { color: "text-red-600" },
@@ -28,7 +31,7 @@ const PasswordInput = ({
     const password = e.target.value;
     const strength = passwordStrength(password);
     console.log(strength);
-    setStrength(strength.id);
+    setStrength && setStrength(strength.id);
     setPasswordStrengthLevel(strength.value);
     setValue(password);
   };
@@ -53,4 +56,3 @@ const PasswordInput = ({
 };
 
 export default PasswordInput;
-

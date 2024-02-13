@@ -17,6 +17,7 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
+  const [strength, setStrength] = useState(0);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -71,12 +72,16 @@ const SignUp = () => {
                 icon={<KeyIcon />}
                 value={password}
                 setValue={setPassword}
+                strength={strength}
+                setStrength={setStrength}
               />
               <PasswordInput
                 placeholder="Confirm Password"
                 icon={<KeyIcon />}
                 value={password}
                 setValue={setPassword}
+                strength={strength}
+                setStrength={setStrength}
               />
               <div>
                 <p className="text-gray-700 text-[9px] my-2 mx-2">
@@ -86,7 +91,11 @@ const SignUp = () => {
                 </p>
               </div>
             </div>
-            <AuthButton label="Create Account" handleAuth={handleAuth} />
+            <AuthButton
+              label="Create Account"
+              handleAuth={handleAuth}
+              disabled={strength !== 2}
+            />
             <div className="flex flex-col items-center justify-center bottom-0 absolute mb-10">
               <div className="flex flex-col items-center justify-center mt-4">
                 <p className="text-gray-700 text-xs mb-2">Or register using</p>
