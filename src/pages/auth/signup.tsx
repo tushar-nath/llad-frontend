@@ -9,6 +9,7 @@ import AuthHeader from "../../components/auth/authHeader";
 import AuthButton from "../../components/auth/authButton";
 import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
+import PasswordInput from "../../components/auth/passwordInput";
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
@@ -32,7 +33,7 @@ const SignUp = () => {
           name: fullName,
           email: email,
           password: password,
-        },
+        }
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
       storeUser(res.data.user);
@@ -49,7 +50,7 @@ const SignUp = () => {
   return (
     <div className="bg-white w-full h-[100vh]">
       <div className="flex items-center justify-center h-full">
-        <div className="w-[480px] h-[650px] bg-[#F9F9F9] relative rounded-[3rem] shadow-[8px_8px_22.7px_6px_rgba(0,_0,_0,_0.25)] py-6">
+        <div className="w-[480px] h-[680px] bg-[#F9F9F9] relative rounded-[3rem] shadow-[8px_8px_22.7px_6px_rgba(0,_0,_0,_0.25)] py-6">
           <AuthHeader />
           <div className="flex flex-col items-center justify-center mt-10">
             <div className="w-full px-16">
@@ -65,18 +66,25 @@ const SignUp = () => {
                 value={email}
                 setValue={setEmail}
               />
-              <CustomInput
+              <PasswordInput
                 placeholder="Password"
                 icon={<KeyIcon />}
                 value={password}
                 setValue={setPassword}
               />
-              <CustomInput
+              <PasswordInput
                 placeholder="Confirm Password"
                 icon={<KeyIcon />}
                 value={password}
                 setValue={setPassword}
               />
+              <div>
+                <p className="text-gray-700 text-[9px] my-2 mx-2">
+                  Password must be at least 10 characters long, contain at least
+                  one uppercase letter, one lowercase letter, one number, and
+                  one special character.
+                </p>
+              </div>
             </div>
             <AuthButton label="Create Account" handleAuth={handleAuth} />
             <div className="flex flex-col items-center justify-center bottom-0 absolute mb-10">
