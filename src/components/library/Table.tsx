@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Table = ({ columns, data }: any) => {
   const [showCardPreview, setShowCardPreview] = useState<any>(null);
+  const [showNotes, setShowNotes] = useState<any>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const { storeCard } = useContext(CardContext);
   const navigate = useNavigate();
@@ -64,8 +65,11 @@ export const Table = ({ columns, data }: any) => {
                       if (cellIndex === 0) {
                         storeCard(row.original);
                         navigate("/edit");
+                      } else if (cellIndex === 5) {
+                        setShowNotes(row.original);
+                      } else {
+                        setShowCardPreview(row.original);
                       }
-                      setShowCardPreview(row.original);
                     }}
                   >
                     {cell.render("Cell")}
@@ -100,6 +104,29 @@ export const Table = ({ columns, data }: any) => {
                 setIsFlipped={setIsFlipped}
               />
             </ReactCardFlip>
+          </div>
+        </div>
+      )}
+      {showNotes && (
+        <div
+          className="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50"
+          onClick={(e: any) => {
+            if (e.target.id !== "notes") return;
+            setShowNotes(null);
+          }}
+        >
+          <div
+            id="notes"
+            className="flex justify-center items-center w-full h-full"
+          >
+            <div className="bg-white w-[500px] h-[300px] rounded-3xl shadow-[5px_4px_30.100000381469727px_0px_#00000040] p-8">
+              <h1 className="text-2xl font-bold text-bluePrimary mb-4">
+                Notes
+              </h1>
+              <p className="text-lg font-semibold text-gray-700">
+                {showNotes.note}
+              </p>
+            </div>
           </div>
         </div>
       )}

@@ -12,6 +12,7 @@ const SidebarProfile = () => {
             src={user?.profilePicture}
             alt="profile"
             className="w-14 h-14 rounded-full"
+            referrerPolicy="no-referrer"
           />
         ) : (
           <UserPlaceholder />

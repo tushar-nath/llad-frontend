@@ -61,6 +61,22 @@ export const LibraryTable = ({ cards }: { cards: any[] }) => {
       },
       accessor: "dateModified",
     },
+    {
+      Header: (row: any) => {
+        return (
+          <div className="flex flex-row gap-1.5 items-center">
+            <FilterIcon />
+            <h1 className="text-base font-bold text-gray-900">Notes</h1>
+          </div>
+        );
+      },
+      Cell: (row: any) => {
+        return (
+          <button className="text-bluePrimary font-bold">View Notes</button>
+        );
+      },
+      accessor: "note",
+    },
   ];
 
   const data: any[] = cards.map((card) => {

@@ -7,24 +7,28 @@ import axios from "axios";
 import { LanguageIcon } from "../svgs/languageIcon";
 import { UserContext } from "../contexts/userContext";
 import { CardContext } from "../contexts/cardContext";
+import { SuccessModal } from "../components/common/SuccessModal";
+import { useNavigate } from "react-router-dom";
 
 const Edit = () => {
   const { card } = useContext(CardContext);
   const [nativeWord, setNativeWord] = useState<string>(
-    card ? card.englishWord : "",
+    card ? card.englishWord : ""
   );
   const [norwegianWord, setNorwegianWord] = useState<string>(
-    card ? card.norwegianWord : "",
+    card ? card.norwegianWord : ""
   );
   const [nativeExample, setNativeExample] = useState<string>(
-    card ? card.englishExample : "",
+    card ? card.englishExample : ""
   );
   const [norwegianExample, setNorwegianExample] = useState<string>(
-    card ? card.norwegianExample : "",
+    card ? card.norwegianExample : ""
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
   const [tags, setTags] = useState<string[]>(card ? card.tags.split(",") : []);
   const { user } = useContext(UserContext);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   console.log(card);
 
@@ -41,13 +45,18 @@ const Edit = () => {
           backExample: norwegianExample,
           note,
           tags,
-        },
+        }
       );
-      alert("Card updated successfully");
+      setShowSuccessModal(true);
     } catch (error) {
       alert("Card creation failed");
       console.error(error);
     }
+  };
+
+  const handleClose = () => {
+    setShowSuccessModal(false);
+    navigate("/library");
   };
 
   return (
@@ -101,6 +110,12 @@ const Edit = () => {
             Update
           </button>
         </div>
+        {showSuccessModal && (
+          <SuccessModal
+            handleClose={handleClose}
+            message="Card updated successfully!"
+          />
+        )}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { NotificationIcon } from "../svgs/notificationIcon";
 import axios from "axios";
 import { LanguageIcon } from "../svgs/languageIcon";
 import { UserContext } from "../contexts/userContext";
+import { SuccessModal } from "../components/common/SuccessModal";
 
 const Create = () => {
   const [nativeWord, setNativeWord] = useState<string>("");
@@ -15,6 +16,7 @@ const Create = () => {
   const [note, setNote] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const { user } = useContext(UserContext);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
   const handleSave = async () => {
     try {
@@ -28,10 +30,10 @@ const Create = () => {
           backExample: norwegianExample,
           note,
           tags,
-        },
+        }
       );
       resetValues();
-      alert("Card created successfully");
+      setShowSuccessModal(true);
     } catch (error) {
       alert("Card creation failed");
       console.error(error);
@@ -98,6 +100,12 @@ const Create = () => {
             Create
           </button>
         </div>
+        {showSuccessModal && (
+          <SuccessModal
+            handleClose={() => setShowSuccessModal(false)}
+            message="Card created successfully"
+          />
+        )}
       </div>
     </div>
   );

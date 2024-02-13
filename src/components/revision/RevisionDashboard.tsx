@@ -11,6 +11,10 @@ export const RevisionDashboard = ({
 }) => {
   const categories = [
     {
+      label: "Revise All",
+      icon: <ReviseIcon />,
+    },
+    {
       label: "Revise by Category",
       icon: <ReviseIcon />,
     },
