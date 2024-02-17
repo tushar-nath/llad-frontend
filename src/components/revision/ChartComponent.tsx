@@ -15,7 +15,6 @@ const ChartComponent = () => {
         labels: ["1", "2", "3", "4", "5"],
         datasets: [
           {
-            label: "",
             data: [4, 8, 15, 12, 6],
             backgroundColor: [
               "#F1FF4C",
@@ -49,13 +48,18 @@ const ChartComponent = () => {
             },
           },
         },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
       },
     });
   }, []);
 
   return (
     <div>
-      <canvas ref={chartRef} width="400" height="400"></canvas>
+      <canvas ref={chartRef} width="400" height="350"></canvas>
     </div>
   );
 };
