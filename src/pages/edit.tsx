@@ -2,27 +2,26 @@ import { useContext, useState } from "react";
 import CreateBackSide from "../components/create/createBackSide";
 import CreateFrontSide from "../components/create/createFrontSide";
 import Sidebar from "../components/sidebar/sidebar";
-import { NotificationIcon } from "../svgs/notificationIcon";
 import axios from "axios";
-import { LanguageIcon } from "../svgs/languageIcon";
 import { UserContext } from "../contexts/userContext";
 import { CardContext } from "../contexts/cardContext";
 import { SuccessModal } from "../components/common/SuccessModal";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../components/common/Header";
 
 const Edit = () => {
   const { card } = useContext(CardContext);
   const [nativeWord, setNativeWord] = useState<string>(
-    card ? card.englishWord : "",
+    card ? card.englishWord : ""
   );
   const [norwegianWord, setNorwegianWord] = useState<string>(
-    card ? card.norwegianWord : "",
+    card ? card.norwegianWord : ""
   );
   const [nativeExample, setNativeExample] = useState<string>(
-    card ? card.englishExample : "",
+    card ? card.englishExample : ""
   );
   const [norwegianExample, setNorwegianExample] = useState<string>(
-    card ? card.norwegianExample : "",
+    card ? card.norwegianExample : ""
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
   const [tags, setTags] = useState<string[]>(card ? card.tags.split(",") : []);
@@ -43,7 +42,7 @@ const Edit = () => {
           backExample: norwegianExample,
           note,
           tags,
-        },
+        }
       );
       setShowSuccessModal(true);
     } catch (error) {
@@ -62,25 +61,7 @@ const Edit = () => {
       <Sidebar />
       <div className="flex flex-col gap-10 w-full">
         {/* Header */}
-        <div className="flex justify-between w-full">
-          <div className="flex flex-row gap-1.5 py-2">
-            <h1 className="text-3xl font-bold text-gray-900">Edit</h1>
-            <p className="text-bluePrimary font-bold text-3xl">Flash Card</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <button>
-              <NotificationIcon />
-            </button>
-            <div className="flex flex-row gap-4">
-              <LanguageIcon />
-              <select className="w-24 outline-none text-bluePrimary font-semibold">
-                <option value="english">English</option>
-                <option value="norwegian">Norwegian</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
+        <Header titleOne="Edit" titleTwo="Flash Card" />
         {/* Main Content */}
         <div className="flex flex-row gap-8">
           <CreateFrontSide

@@ -1,6 +1,4 @@
 import Sidebar from "../components/sidebar/sidebar";
-import { LanguageIcon } from "../svgs/languageIcon";
-import { NotificationIcon } from "../svgs/notificationIcon";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/userContext";
 import CardPreview from "../components/revision/CardPreview";
@@ -8,6 +6,7 @@ import { RevisionDashboard } from "../components/revision/RevisionDashboard";
 import { RevisionGraph } from "../components/revision/RevisionGraph";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
+import { Header } from "../components/common/Header";
 
 const Revision = () => {
   const { user } = useContext(UserContext);
@@ -21,7 +20,7 @@ const Revision = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
       );
       setCards(res.data.cards);
       setIsLoading(false);
@@ -34,7 +33,7 @@ const Revision = () => {
   const getTags = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`,
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`
       );
       setTags(res.data.tags);
     } catch (error) {
@@ -66,24 +65,8 @@ const Revision = () => {
       <Sidebar />
       <div className="flex flex-col gap-10 w-full">
         {/* Header */}
-        <div className="flex justify-between w-full">
-          <div className="flex flex-row gap-1.5 py-2">
-            <h1 className="text-3xl font-bold text-bluePrimary">Revisions</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <button>
-              <NotificationIcon />
-            </button>
-            <div className="flex flex-row gap-4">
-              <LanguageIcon />
-              <select className="w-24 outline-none text-bluePrimary font-semibold">
-                <option value="english">English</option>
-                <option value="norwegian">Norwegian</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
+        <Header titleOne="Revision" titleTwo="" />
+        {/* Main Content */}
         {isLoading ? (
           <div className="flex items-center justify-center h-[70vh] w-full">
             <BeatLoader color="#7573FF" />

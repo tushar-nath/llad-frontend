@@ -1,9 +1,8 @@
+import { Header } from "../components/common/Header";
 import GetStarted from "../components/dashboard/getStarted";
 import Revision from "../components/dashboard/revision";
 import Stats from "../components/dashboard/stats";
 import Sidebar from "../components/sidebar/sidebar";
-import { LanguageIcon } from "../svgs/languageIcon";
-import { NotificationIcon } from "../svgs/notificationIcon";
 
 const Dashboard = () => {
   return (
@@ -11,25 +10,7 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex flex-col gap-10 w-full">
         {/* Header */}
-        <div className="flex justify-between w-full">
-          <div className="flex flex-row gap-1.5 py-2">
-            <h1 className="text-3xl font-bold text-gray-900">Welcome To</h1>
-            <p className="text-bluePrimary font-bold text-3xl">Learning App</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <button>
-              <NotificationIcon />
-            </button>
-            <div className="flex flex-row gap-4">
-              <LanguageIcon />
-              <select className="w-24 outline-none text-bluePrimary font-semibold">
-                <option value="english">English</option>
-                <option value="norwegian">Norwegian</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
+        <Header titleOne="Welcome To" titleTwo="Learning App" />
         {/* Main Content */}
         <div className="flex flex-row gap-12">
           <div className="flex flex-col gap-10">
