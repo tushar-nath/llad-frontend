@@ -42,7 +42,7 @@ const CreateBackSide = ({
         <input
           type="text"
           className="w-full h-16 rounded-2xl outline-none px-2 text-gray-900 font-medium"
-          placeholder="Enter text in Norwegian Language"
+          placeholder={t("Enter text in Norwegian Language")}
           value={norwegianWord}
           onChange={(e) => setNorwegianWord(e.target.value)}
         />
@@ -52,14 +52,14 @@ const CreateBackSide = ({
         <input
           type="text"
           className="w-full h-16 rounded-2xl outline-none px-2 text-gray-900 font-medium"
-          placeholder="Example in Norwegian Language"
+          placeholder={t("Example in Norwegian Language")}
           value={norwegianExample}
           onChange={(e) => setNorwegianExample(e.target.value)}
         />
       </div>
       <div className="flex gap-5">
         <div className="flex flex-col">
-          <h1 className="text-lg font-bold text-bluePrimary">Notes</h1>
+          <h1 className="text-lg font-bold text-bluePrimary">{t("Notes")}</h1>
           <textarea
             className="w-64 h-32 rounded-2xl outline-none border-[1.2px] border-bluePrimary px-6 resize-none p-4 text-gray-700 font-medium"
             value={note}
@@ -67,7 +67,7 @@ const CreateBackSide = ({
           />
         </div>
         <div className="flex flex-wrap pt-5 gap-3">
-          <h1 className="text-lg font-bold text-bluePrimary">Tags:</h1>
+          <h1 className="text-lg font-bold text-bluePrimary">{t("Tags")}:</h1>
           <div className="flex flex-wrap gap-3">
             {defaultTags.map((tag, index) => (
               <button

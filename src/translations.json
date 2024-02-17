@@ -31,7 +31,15 @@
       "You have learned 40 words this week": "You have learned 40 words this week",
       "View Profile": "View Profile",
       "Add Flash Cards": "Add Flash Cards",
-      "Log Out": "Log Out"
+      "Log Out": "Log Out",
+      "Enter text in your Native Language": "Enter text in your Native Language",
+      "Example in your Native Language": "Example in your Native Language",
+      "Enter text in Norwegian Language": "Enter text in Norwegian Language",
+      "Example in Norwegian Language": "Example in Norwegian Language",
+      "Notes": "Notes",
+      "Tags": "Tags",
+      "Card created successfully": "Card created successfully",
+      "Card creation failed": "Card creation failed"
     }
   },
   "no": {
@@ -66,7 +74,15 @@
       "You have learned 40 words this week": "Du har lært 40 ord denne uken",
       "View Profile": "Vis profil",
       "Add Flash Cards": "Legg til Flash-kort",
-      "Log Out": "Logg ut"
+      "Log Out": "Logg ut",
+      "Enter text in your Native Language": "Skriv inn tekst på morsmålet ditt",
+      "Example in your Native Language": "Eksempel på morsmålet ditt",
+      "Enter text in Norwegian Language": "Skriv inn tekst på norsk",
+      "Example in Norwegian Language": "Eksempel på norsk språk",
+      "Notes": "Notater",
+      "Tags": "Tagger",
+      "Card created successfully": "Kortet ble opprettet",
+      "Card creation failed": "Kortopprettelsen mislyktes"
     }
   }
 }

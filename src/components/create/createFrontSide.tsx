@@ -30,7 +30,7 @@ const CreateFrontSide = ({
         <input
           type="text"
           className="w-full h-16 rounded-2xl outline-none px-2 text-gray-900 font-medium"
-          placeholder="Enter text in your Native Language"
+          placeholder={t("Enter text in your Native Language")}
           value={nativeWord}
           onChange={(e) => setNativeWord(e.target.value)}
         />
@@ -40,7 +40,7 @@ const CreateFrontSide = ({
         <input
           type="text"
           className="w-full h-16 rounded-2xl outline-none px-2 text-gray-900 font-medium"
-          placeholder="Example in your Native Language"
+          placeholder={t("Example in your Native Language")}
           value={nativeExample}
           onChange={(e) => setNativeExample(e.target.value)}
         />

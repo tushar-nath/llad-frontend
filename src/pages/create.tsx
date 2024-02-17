@@ -7,6 +7,7 @@ import { UserContext } from "../contexts/userContext";
 import { SuccessModal } from "../components/common/SuccessModal";
 import { Header } from "../components/common/Header";
 import { useTranslation } from "react-i18next";
+import { ErrorModal } from "../components/common/ErrorModal";
 
 const Create = () => {
   const { t } = useTranslation();
@@ -14,6 +15,8 @@ const Create = () => {
   const [norwegianWord, setNorwegianWord] = useState<string>("");
   const [nativeExample, setNativeExample] = useState<string>("");
   const [norwegianExample, setNorwegianExample] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
   const [note, setNote] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const { user } = useContext(UserContext);
@@ -31,12 +34,13 @@ const Create = () => {
           backExample: norwegianExample,
           note,
           tags,
-        },
+        }
       );
       resetValues();
       setShowSuccessModal(true);
     } catch (error) {
-      alert("Card creation failed");
+      setErrorMessage(t("Card creation failed"));
+      setShowErrorModal(true);
       console.error(error);
     }
   };
@@ -86,7 +90,13 @@ const Create = () => {
         {showSuccessModal && (
           <SuccessModal
             handleClose={() => setShowSuccessModal(false)}
-            message="Card created successfully"
+            message={t("Card created successfully")}
+          />
+        )}
+        {showErrorModal && (
+          <ErrorModal
+            handleClose={() => setShowErrorModal(false)}
+            message={errorMessage}
           />
         )}
       </div>

@@ -16,7 +16,7 @@ const Tag = ({
   const [showInput, setShowInput] = useState<boolean>(false);
   return (
     <button
-      className="flex items-center justify-center w-20 h-6 rounded-lg border-[1.5px] border-none bg-white text-bluePrimary font-bold"
+      className="flex items-center justify-center whitespace-nowrap h-6 rounded-lg border-[1.5px] border-none bg-white text-bluePrimary font-bold"
       onClick={() => setShowInput(true)}
     >
       {!showInput && label}
@@ -35,7 +35,7 @@ const Tag = ({
             }
           }}
           autoFocus
-          className="h-8 rounded-lg outline-none border-[1.5px] border-bluePrimary"
+          className="h-8 rounded-lg w-20 outline-none border-[1.5px] border-bluePrimary"
         />
       )}
     </button>
