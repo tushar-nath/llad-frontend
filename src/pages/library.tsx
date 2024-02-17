@@ -6,8 +6,10 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/userContext";
 import { BeatLoader } from "react-spinners";
 import { Header } from "../components/common/Header";
+import { useTranslation } from "react-i18next";
 
 const Library = () => {
+  const { t } = useTranslation();
   const [cards, setCards] = useState<any[]>([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -16,7 +18,7 @@ const Library = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
       );
       setCards(res.data.cards);
       setIsLoading(false);
@@ -35,7 +37,7 @@ const Library = () => {
     // Sorting cards by date modified
     const sorted = cards.sort(
       (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     );
     setCards(sorted);
   };
@@ -45,7 +47,7 @@ const Library = () => {
       <Sidebar />
       <div className="flex flex-col gap-10 w-full">
         {/* Header */}
-        <Header titleOne="Your Library" titleTwo="" />
+        <Header titleOne={t("Your Library")} titleTwo="" />
         {/* Main Content */}
         <LibraryHeader />
         {isLoading ? (
@@ -55,7 +57,7 @@ const Library = () => {
         ) : cards && cards.length === 0 ? (
           <div className="flex items-center justify-center h-[70vh] w-full">
             <h1 className="text-2xl text-gray-800 font-semibold">
-              You have no cards in your library
+              {t("You have no cards in your library")}
             </h1>
           </div>
         ) : (

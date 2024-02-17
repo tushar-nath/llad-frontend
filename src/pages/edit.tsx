@@ -8,20 +8,22 @@ import { CardContext } from "../contexts/cardContext";
 import { SuccessModal } from "../components/common/SuccessModal";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/common/Header";
+import { useTranslation } from "react-i18next";
 
 const Edit = () => {
+  const { t } = useTranslation();
   const { card } = useContext(CardContext);
   const [nativeWord, setNativeWord] = useState<string>(
-    card ? card.englishWord : ""
+    card ? card.englishWord : "",
   );
   const [norwegianWord, setNorwegianWord] = useState<string>(
-    card ? card.norwegianWord : ""
+    card ? card.norwegianWord : "",
   );
   const [nativeExample, setNativeExample] = useState<string>(
-    card ? card.englishExample : ""
+    card ? card.englishExample : "",
   );
   const [norwegianExample, setNorwegianExample] = useState<string>(
-    card ? card.norwegianExample : ""
+    card ? card.norwegianExample : "",
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
   const [tags, setTags] = useState<string[]>(card ? card.tags.split(",") : []);
@@ -42,7 +44,7 @@ const Edit = () => {
           backExample: norwegianExample,
           note,
           tags,
-        }
+        },
       );
       setShowSuccessModal(true);
     } catch (error) {
@@ -86,7 +88,7 @@ const Edit = () => {
             className="border-[1.5px] border-bluePrimary px-14 transition-all duration-300 hover:shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl text-bluePrimary font-bold text-lg py-3"
             onClick={handleSave}
           >
-            Update
+            {t("Update")}
           </button>
         </div>
         {showSuccessModal && (

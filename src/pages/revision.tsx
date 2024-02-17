@@ -7,8 +7,10 @@ import { RevisionGraph } from "../components/revision/RevisionGraph";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { Header } from "../components/common/Header";
+import { useTranslation } from "react-i18next";
 
 const Revision = () => {
+  const { t } = useTranslation();
   const { user } = useContext(UserContext);
   const [showCardPreview, setShowCardPreview] = useState<boolean>(false);
   const [cards, setCards] = useState<any[]>([]);
@@ -20,7 +22,7 @@ const Revision = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
       );
       setCards(res.data.cards);
       setIsLoading(false);
@@ -33,7 +35,7 @@ const Revision = () => {
   const getTags = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`,
       );
       setTags(res.data.tags);
     } catch (error) {
@@ -65,7 +67,7 @@ const Revision = () => {
       <Sidebar />
       <div className="flex flex-col gap-10 w-full">
         {/* Header */}
-        <Header titleOne="Revision" titleTwo="" />
+        <Header titleOne={t("Revision")} titleTwo="" />
         {/* Main Content */}
         {isLoading ? (
           <div className="flex items-center justify-center h-[70vh] w-full">
@@ -81,7 +83,7 @@ const Revision = () => {
               />
             ) : (
               <h1 className="text-2xl font-semibold text-bluePrimary">
-                No cards to revise
+                {t("No cards to revise")}
               </h1>
             )}
           </div>

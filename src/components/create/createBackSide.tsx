@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { TextIcon } from "../../svgs/textIcon";
 import { GridIcon } from "../../svgs/gridIcon";
 import Tag from "./Tag";
+import { useTranslation } from "react-i18next";
 
 interface CreateBackSideProps {
   setNorwegianWord: Dispatch<SetStateAction<string>>;
@@ -24,6 +25,7 @@ const CreateBackSide = ({
   setTags,
   tags,
 }: CreateBackSideProps) => {
+  const { t } = useTranslation();
   const [addTagValue, setAddTagValue] = useState<string>("");
 
   const defaultTags = ["noun", "verb", "adjective"];
@@ -31,7 +33,9 @@ const CreateBackSide = ({
   return (
     <div className="w-[50%] h-[520px] bg-[#F9F9F9] rounded-[4rem] border-[2px] border-bluePrimary p-8 flex flex-col gap-10">
       <div className="flex items-center justify-center">
-        <h1 className="text-3xl font-bold text-bluePrimary">Back Side</h1>
+        <h1 className="text-3xl font-bold text-bluePrimary">
+          {t("Back Side")}
+        </h1>
       </div>
       <div className="flex items-center gap-3 justify-between bg-white shadow-[0px_3px_27.6px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl px-4">
         <TextIcon />

@@ -15,6 +15,7 @@ import Library from "./pages/library";
 import Revision from "./pages/revision";
 
 import "./styles/index.css";
+import "./i18n";
 
 function App() {
   return (

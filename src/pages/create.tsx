@@ -6,8 +6,10 @@ import Sidebar from "../components/sidebar/sidebar";
 import { UserContext } from "../contexts/userContext";
 import { SuccessModal } from "../components/common/SuccessModal";
 import { Header } from "../components/common/Header";
+import { useTranslation } from "react-i18next";
 
 const Create = () => {
+  const { t } = useTranslation();
   const [nativeWord, setNativeWord] = useState<string>("");
   const [norwegianWord, setNorwegianWord] = useState<string>("");
   const [nativeExample, setNativeExample] = useState<string>("");
@@ -29,7 +31,7 @@ const Create = () => {
           backExample: norwegianExample,
           note,
           tags,
-        }
+        },
       );
       resetValues();
       setShowSuccessModal(true);
@@ -53,7 +55,7 @@ const Create = () => {
       <Sidebar />
       <div className="flex flex-col gap-10 w-full">
         {/* Header */}
-        <Header titleOne="Create a" titleTwo="Flash Card" />
+        <Header titleOne={t("Create a")} titleTwo={t("Flash Card")} />
         {/* Main Content */}
         <div className="flex flex-row gap-8">
           <CreateFrontSide
@@ -78,7 +80,7 @@ const Create = () => {
             className="border-[1.5px] border-bluePrimary px-14 transition-all duration-300 hover:shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl text-bluePrimary font-bold text-lg py-3"
             onClick={handleSave}
           >
-            Create
+            {t("Create")}
           </button>
         </div>
         {showSuccessModal && (

@@ -1,0 +1,34 @@
+{
+  "en": {
+    "translation": {
+      "Welcome To": "Welcome To",
+      "Learning App": "Learning App",
+      "Create": "Create",
+      "Front Side": "Front Side",
+      "Back Side": "Back Side",
+      "Update": "Update",
+      "Create a": "Create a",
+      "Flash Card": "Flash Card",
+      "Your Library": "Your Library",
+      "You have no cards in your library": "You have no cards in your library",
+      "Revision": "Revision",
+      "No cards to revise": "No cards to revise"
+    }
+  },
+  "no": {
+    "translation": {
+      "Welcome To": "Velkommen til",
+      "Learning App": "Læringsapp",
+      "Create": "Skape",
+      "Front Side": "Forsiden",
+      "Back Side": "Bakside",
+      "Update": "Oppdater",
+      "Create a": "Lage en",
+      "Flash Card": "Flashkort",
+      "Your Library": "Ditt bibliotek",
+      "You have no cards in your library": "Du har ingen kort i biblioteket ditt",
+      "Revision": "Revisjon",
+      "No cards to revise": "Ingen kort å revidere"
+    }
+  }
+}
