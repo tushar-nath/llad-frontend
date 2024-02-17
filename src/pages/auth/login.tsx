@@ -10,12 +10,17 @@ import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
 import { EyeIcon } from "../../svgs/eyeIcon";
 import { EyeCloseIcon } from "../../svgs/eyeCloseIcon";
+import { SuccessModal } from "../../components/common/SuccessModal";
+import { ErrorModal } from "../../components/common/ErrorModal";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [type, setType] = useState<string>("password");
   const [icon, setIcon] = useState(<EyeCloseIcon />);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
 
@@ -64,6 +69,11 @@ const Login = () => {
   };
 
   const handleResetPassword = async () => {
+    if (!email) {
+      setShowErrorModal(true);
+      setErrorMessage("Please enter your email address.");
+      return;
+    }
     try {
       await axios.post(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/forgot-password`,
@@ -71,11 +81,12 @@ const Login = () => {
           email: email,
         },
       );
-      alert("Password reset link sent to your email.");
+      setShowSuccessModal(true);
     } catch (error: any) {
       console.error(error);
       if (error.response.status === 400) {
-        alert("Invalid email, please create an account.");
+        setShowErrorModal(true);
+        setErrorMessage("Invalid email address, please try again.");
         return;
       }
     }
@@ -143,6 +154,18 @@ const Login = () => {
               </div>
             </div>
           </div>
+          {showSuccessModal && (
+            <SuccessModal
+              handleClose={() => setShowSuccessModal(false)}
+              message="Password reset link sent to your email."
+            />
+          )}
+          {showErrorModal && (
+            <ErrorModal
+              handleClose={() => setShowErrorModal(false)}
+              message={errorMessage}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -10,11 +10,17 @@ import AuthButton from "../../components/auth/authButton";
 import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
 import PasswordInput from "../../components/auth/passwordInput";
+import { ErrorModal } from "../../components/common/ErrorModal";
+import { SuccessModal } from "../../components/common/SuccessModal";
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [fullName, setFullName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
   const [strength, setStrength] = useState<number>(0);
@@ -26,8 +32,25 @@ const SignUp = () => {
     }
   }, []);
 
+  const validEmail = (email: string) => {
+    const re =
+      // eslint-disable-next-line no-useless-escape
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return re.test(email);
+  };
+
   const handleAuth = async () => {
     try {
+      if (password !== confirmPassword) {
+        setShowErrorModal(true);
+        setErrorMessage("Passwords do not match, please check and try again.");
+        return;
+      }
+      if (!validEmail(email)) {
+        setShowErrorModal(true);
+        setErrorMessage("Please enter a valid email address.");
+        return;
+      }
       const res = await axios.post(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/signup`,
         {
@@ -42,7 +65,7 @@ const SignUp = () => {
     } catch (error: any) {
       console.error(error);
       if (error.response.status === 400) {
-        alert("Account already exists, please login.");
+        setShowSuccessModal(true);
         return;
       }
     }
@@ -82,8 +105,8 @@ const SignUp = () => {
               <PasswordInput
                 placeholder="Confirm Password"
                 icon={<KeyIcon />}
-                value={password}
-                setValue={setPassword}
+                value={confirmPassword}
+                setValue={setConfirmPassword}
                 strength={strength}
                 setStrength={setStrength}
               />
@@ -98,7 +121,7 @@ const SignUp = () => {
             <AuthButton
               label="Create Account"
               handleAuth={handleAuth}
-              disabled={strength !== 2}
+              disabled={strength < 3}
             />
             <div className="flex flex-col items-center justify-center bottom-0 absolute mb-10">
               <div className="flex flex-col items-center justify-center mt-4">
@@ -121,6 +144,21 @@ const SignUp = () => {
             </div>
           </div>
         </div>
+        {showErrorModal && (
+          <ErrorModal
+            handleClose={() => setShowErrorModal(false)}
+            message={errorMessage}
+          />
+        )}
+        {showSuccessModal && (
+          <SuccessModal
+            handleClose={() => {
+              setShowSuccessModal(false);
+              navigate("/");
+            }}
+            message="User already exists, please login."
+          />
+        )}
       </div>
     </div>
   );
