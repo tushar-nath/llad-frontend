@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { DotsIcon } from "../../svgs/dotsIcon";
 import { StarIcon } from "../../svgs/starIcon";
 import { EditIcon } from "../../svgs/editIcon";
+import { useTranslation } from "react-i18next";
 
 export const FrontCard = ({
   card,
@@ -10,6 +11,7 @@ export const FrontCard = ({
   card: any;
   setIsFlipped: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -58,7 +60,7 @@ export const FrontCard = ({
       </h2>
       <button>
         <h2 className="text-xs font-bold text-gray-700 absolute bottom-8 right-10">
-          Tap to Flip the Card
+          {t("Tap to Flip the Card")}
         </h2>
       </button>
     </div>

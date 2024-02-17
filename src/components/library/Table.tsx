@@ -5,8 +5,10 @@ import { FrontCard } from "../revision/FrontCard";
 import { BackCard } from "../revision/BackCard";
 import { CardContext } from "../../contexts/cardContext";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const Table = ({ columns, data }: any) => {
+  const { t } = useTranslation();
   const [showCardPreview, setShowCardPreview] = useState<any>(null);
   const [showNotes, setShowNotes] = useState<any>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
@@ -30,7 +32,7 @@ export const Table = ({ columns, data }: any) => {
               {headerGroup.headers.map((column: any, columnIndex: number) => (
                 <th
                   {...column.getHeaderProps(
-                    columnIndex === 4 ? column.getSortByToggleProps() : {},
+                    columnIndex === 4 ? column.getSortByToggleProps() : {}
                   )}
                   key={`header-${columnIndex}`}
                   className="text-xs font-medium bg-white text-left text-gray-700 px-5 py-2 h-12 border-b border-gray-200 rounded-t-3xl sticky top-0"
@@ -123,7 +125,7 @@ export const Table = ({ columns, data }: any) => {
           >
             <div className="bg-white w-[500px] h-[300px] rounded-3xl shadow-[5px_4px_30.100000381469727px_0px_#00000040] p-8">
               <h1 className="text-2xl font-bold text-bluePrimary mb-4">
-                Notes
+                {t("Notes")}
               </h1>
               <p className="text-lg font-semibold text-gray-700">
                 {showNotes.note}

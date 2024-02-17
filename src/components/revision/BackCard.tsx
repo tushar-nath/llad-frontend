@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { DotsIcon } from "../../svgs/dotsIcon";
 import { EditIcon } from "../../svgs/editIcon";
 import { StarIcon } from "../../svgs/starIcon";
+import { useTranslation } from "react-i18next";
 
 export const BackCard = ({
   card,
@@ -10,6 +11,7 @@ export const BackCard = ({
   card: any;
   setIsFlipped: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -69,13 +71,13 @@ export const BackCard = ({
       </h2>
       <div className="flex flex-row gap-1.5 items-center justify-between w-full px-8 mt-4">
         <div className="flex flex-row gap-1.5 items-center">
-          <h2 className="text-base font-bold text-bluePrimary">Note:</h2>
+          <h2 className="text-base font-bold text-bluePrimary">{t("Note")}:</h2>
           <h2 className="text-base font-bold text-gray-900">
             {card.note ? card.note : ""}
           </h2>
         </div>
         <div className="flex flex-row gap-1.5 items-center">
-          <h2 className="text-base font-bold text-bluePrimary">Tags:</h2>
+          <h2 className="text-base font-bold text-bluePrimary">{t("Tags")}:</h2>
           <h2 className="text-base font-bold text-gray-900">
             {Array.isArray(card.tags) ? card.tags.join(", ") : card.tags}
           </h2>
@@ -83,7 +85,7 @@ export const BackCard = ({
       </div>
       <button>
         <h2 className="text-xs font-bold text-gray-700 absolute bottom-8 right-10">
-          Tap to Flip the Card
+          {t("Tap to Flip the Card")}
         </h2>
       </button>
     </div>

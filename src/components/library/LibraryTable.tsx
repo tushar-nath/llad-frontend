@@ -2,6 +2,7 @@ import { EditIcon } from "../../svgs/editIcon";
 import { Table } from "./Table";
 import { FilterIcon } from "../../svgs/filterIcon";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 export const LibraryTable = ({
   cards,
@@ -10,6 +11,7 @@ export const LibraryTable = ({
   cards: any[];
   handleSort: () => void;
 }) => {
+  const { t } = useTranslation();
   const columns = [
     {
       Header: "",
@@ -27,7 +29,9 @@ export const LibraryTable = ({
         return (
           <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
-            <h1 className="text-base font-bold text-gray-900">Norwegian</h1>
+            <h1 className="text-base font-bold text-gray-900">
+              {t("Norwegian")}
+            </h1>
           </div>
         );
       },
@@ -38,7 +42,9 @@ export const LibraryTable = ({
         return (
           <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
-            <h1 className="text-base font-bold text-gray-900">English</h1>
+            <h1 className="text-base font-bold text-gray-900">
+              {t("English")}
+            </h1>
           </div>
         );
       },
@@ -49,7 +55,7 @@ export const LibraryTable = ({
         return (
           <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
-            <h1 className="text-base font-bold text-gray-900">Tags</h1>
+            <h1 className="text-base font-bold text-gray-900">{t("Tags")}</h1>
           </div>
         );
       },
@@ -60,7 +66,9 @@ export const LibraryTable = ({
         return (
           <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
-            <h1 className="text-base font-bold text-gray-900">Date Modified</h1>
+            <h1 className="text-base font-bold text-gray-900">
+              {t("Date Modified")}
+            </h1>
           </div>
         );
       },
@@ -71,13 +79,15 @@ export const LibraryTable = ({
         return (
           <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
-            <h1 className="text-base font-bold text-gray-900">Notes</h1>
+            <h1 className="text-base font-bold text-gray-900">{t("Notes")}</h1>
           </div>
         );
       },
       Cell: (row: any) => {
         return (
-          <button className="text-bluePrimary font-bold">View Notes</button>
+          <button className="text-bluePrimary font-bold">
+            {t("View Notes")}
+          </button>
         );
       },
       accessor: "note",

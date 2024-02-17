@@ -39,7 +39,15 @@
       "Notes": "Notes",
       "Tags": "Tags",
       "Card created successfully": "Card created successfully",
-      "Card creation failed": "Card creation failed"
+      "Card creation failed": "Card creation failed",
+      "Search": "Search",
+      "Add New": "Add New",
+      "View Notes": "View Notes",
+      "Tap to Flip the Card": "Tap to Flip the Card",
+      "Note": "Note",
+      "Norwegian": "Norwegian",
+      "English": "English",
+      "Date Modified": "Date Modified"
     }
   },
   "no": {
@@ -82,7 +90,15 @@
       "Notes": "Notater",
       "Tags": "Tagger",
       "Card created successfully": "Kortet ble opprettet",
-      "Card creation failed": "Kortopprettelsen mislyktes"
+      "Card creation failed": "Kortopprettelsen mislyktes",
+      "Search": "Søk",
+      "Add New": "Legg til ny",
+      "View Notes": "Se notater",
+      "Tap to Flip the Card": "Trykk for å snu kortet",
+      "Note": "Merk",
+      "Norwegian": "Norsk",
+      "English": "Engelsk",
+      "Date Modified": "Dato endret"
     }
   }
 }
