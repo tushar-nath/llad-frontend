@@ -54,7 +54,12 @@
       "Revised Last Week": "Revised Last Week",
       "Revised Last 15 Days": "Revised Last 15 Days",
       "Revised Last 30 Days": "Revised Last 30 Days",
-      "Revised Last 60 Days": "Revised Last 60 Days"
+      "Revised Last 60 Days": "Revised Last 60 Days",
+      "Forgot": "Forgot",
+      "Mildly Recalled": "Mildly Recalled",
+      "Partially Recalled": "Partially Recalled",
+      "Recalled with Effort": "Recalled with Effort",
+      "Easily Recalled": "Easily Recalled"
     }
   },
   "no": {
@@ -112,7 +117,12 @@
       "Revised Last Week": "Revidert forrige uke",
       "Revised Last 15 Days": "Revidert siste 15 dager",
       "Revised Last 30 Days": "Revidert siste 30 dager",
-      "Revised Last 60 Days": "Revidert siste 60 dager"
+      "Revised Last 60 Days": "Revidert siste 60 dager",
+      "Forgot": "Glemt",
+      "Mildly Recalled": "Mildt husket",
+      "Partially Recalled": "Delvis husket",
+      "Recalled with Effort": "Husket med innsats",
+      "Easily Recalled": "Lett husket"
     }
   }
 }

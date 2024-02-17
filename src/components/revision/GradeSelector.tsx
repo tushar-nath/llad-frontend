@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { GradeButton } from "./GradeButton";
 
 interface GradeSelectorProps {
@@ -6,12 +7,13 @@ interface GradeSelectorProps {
 }
 
 export const GradeSelector = ({ handleGrade, card }: GradeSelectorProps) => {
+  const { t } = useTranslation();
   const grades = [
-    { id: 1, grade: "Forgot", color: "bg-[#FF0000]" },
-    { id: 2, grade: "Mildly Recalled", color: "bg-[#E46000]" },
-    { id: 3, grade: "Partially Recalled", color: "bg-[#FFA800]" },
-    { id: 4, grade: "Recalled with Effort", color: "bg-[#C0E000]" },
-    { id: 5, grade: "Easily Recalled", color: "bg-[#43D300]" },
+    { id: 1, grade: t("Forgot"), color: "bg-[#FF0000]" },
+    { id: 2, grade: t("Mildly Recalled"), color: "bg-[#E46000]" },
+    { id: 3, grade: t("Partially Recalled"), color: "bg-[#FFA800]" },
+    { id: 4, grade: t("Recalled with Effort"), color: "bg-[#C0E000]" },
+    { id: 5, grade: t("Easily Recalled"), color: "bg-[#43D300]" },
   ];
 
   return (
