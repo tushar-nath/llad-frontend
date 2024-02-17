@@ -17,7 +17,7 @@ const Library = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
       );
       setCards(res.data.cards);
       setIsLoading(false);
@@ -36,7 +36,7 @@ const Library = () => {
     // Sorting cards by date modified
     const sorted = cards.sort(
       (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     );
     setCards(sorted);
   };

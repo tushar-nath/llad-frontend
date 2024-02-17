@@ -21,7 +21,7 @@ const Revision = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
       );
       setCards(res.data.cards);
       setIsLoading(false);
@@ -34,7 +34,7 @@ const Revision = () => {
   const getTags = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`,
       );
       setTags(res.data.tags);
     } catch (error) {

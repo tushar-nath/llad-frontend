@@ -30,7 +30,7 @@ export const Table = ({ columns, data }: any) => {
               {headerGroup.headers.map((column: any, columnIndex: number) => (
                 <th
                   {...column.getHeaderProps(
-                    columnIndex === 4 ? column.getSortByToggleProps() : {}
+                    columnIndex === 4 ? column.getSortByToggleProps() : {},
                   )}
                   key={`header-${columnIndex}`}
                   className="text-xs font-medium bg-white text-left text-gray-700 px-5 py-2 h-12 border-b border-gray-200 rounded-t-3xl sticky top-0"

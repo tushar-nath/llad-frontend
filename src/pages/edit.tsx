@@ -13,16 +13,16 @@ import { useNavigate } from "react-router-dom";
 const Edit = () => {
   const { card } = useContext(CardContext);
   const [nativeWord, setNativeWord] = useState<string>(
-    card ? card.englishWord : ""
+    card ? card.englishWord : "",
   );
   const [norwegianWord, setNorwegianWord] = useState<string>(
-    card ? card.norwegianWord : ""
+    card ? card.norwegianWord : "",
   );
   const [nativeExample, setNativeExample] = useState<string>(
-    card ? card.englishExample : ""
+    card ? card.englishExample : "",
   );
   const [norwegianExample, setNorwegianExample] = useState<string>(
-    card ? card.norwegianExample : ""
+    card ? card.norwegianExample : "",
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
   const [tags, setTags] = useState<string[]>(card ? card.tags.split(",") : []);
@@ -43,7 +43,7 @@ const Edit = () => {
           backExample: norwegianExample,
           note,
           tags,
-        }
+        },
       );
       setShowSuccessModal(true);
     } catch (error) {

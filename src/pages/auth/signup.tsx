@@ -34,7 +34,7 @@ const SignUp = () => {
           name: fullName,
           email: email,
           password: password,
-        }
+        },
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
       storeUser(res.data.user);
@@ -46,6 +46,10 @@ const SignUp = () => {
         return;
       }
     }
+  };
+
+  const handleGoogleAuth = async () => {
+    window.location.href = `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/auth/google`;
   };
 
   return (
@@ -99,7 +103,7 @@ const SignUp = () => {
             <div className="flex flex-col items-center justify-center bottom-0 absolute mb-10">
               <div className="flex flex-col items-center justify-center mt-4">
                 <p className="text-gray-700 text-xs mb-2">Or register using</p>
-                <button>
+                <button onClick={handleGoogleAuth}>
                   <GoogleIcon />
                 </button>
               </div>

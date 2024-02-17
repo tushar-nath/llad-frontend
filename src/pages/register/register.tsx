@@ -24,7 +24,7 @@ const Register = () => {
         {
           userId: user?._id,
           currentNorwegianSkill: norwegianLevel,
-        }
+        },
       );
       storeUser(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));

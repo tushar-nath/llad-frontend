@@ -8,10 +8,14 @@ import AuthHeader from "../../components/auth/authHeader";
 import AuthButton from "../../components/auth/authButton";
 import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
+import { EyeIcon } from "../../svgs/eyeIcon";
+import { EyeCloseIcon } from "../../svgs/eyeCloseIcon";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [type, setType] = useState<string>("password");
+  const [icon, setIcon] = useState(<EyeCloseIcon />);
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
 
@@ -41,7 +45,7 @@ const Login = () => {
         {
           email: email,
           password: password,
-        }
+        },
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
       storeUser(res.data.user);
@@ -65,7 +69,7 @@ const Login = () => {
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/forgot-password`,
         {
           email: email,
-        }
+        },
       );
       alert("Password reset link sent to your email.");
     } catch (error: any) {
@@ -74,6 +78,16 @@ const Login = () => {
         alert("Invalid email, please create an account.");
         return;
       }
+    }
+  };
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(<EyeIcon />);
+      setType("text");
+    } else {
+      setIcon(<EyeCloseIcon />);
+      setType("password");
     }
   };
 
@@ -95,6 +109,9 @@ const Login = () => {
                 icon={<KeyIcon />}
                 value={password}
                 setValue={setPassword}
+                handleToggle={handleToggle}
+                type={type}
+                eyeIcon={icon}
               />
               <div className="flex justify-end">
                 <button

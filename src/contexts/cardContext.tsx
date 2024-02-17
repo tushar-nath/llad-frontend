@@ -53,7 +53,7 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({
     }) => {
       setCard(cardData);
     },
-    []
+    [],
   );
 
   const removeCard = useCallback(() => {

@@ -44,7 +44,7 @@ const ResetPassword = () => {
         {
           token: token,
           newPassword: password,
-        }
+        },
       );
       alert("Password Reset Successfully, proceed with login");
     } catch (error: any) {

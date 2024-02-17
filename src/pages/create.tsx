@@ -30,7 +30,7 @@ const Create = () => {
           backExample: norwegianExample,
           note,
           tags,
-        }
+        },
       );
       resetValues();
       setShowSuccessModal(true);

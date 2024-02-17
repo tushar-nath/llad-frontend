@@ -26,7 +26,7 @@ const CardPreview = ({
           userId: user?._id,
           cardId,
           grade,
-        }
+        },
       );
       updateIndex((prev: number) => prev + 1);
       setIsFlipped(false);
