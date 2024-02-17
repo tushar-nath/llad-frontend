@@ -31,14 +31,12 @@ export const RevisionGraph = () => {
       <div className="flex flex-col gap-4 p-6">
         <div className="flex flex-col gap-8">
           {graphData.map((data, index) => (
-            <div key={index} className="">
-              <h1 className="text-lg text-center flex gap-4 font-semibold text-gray-900">
-                <div
-                  className={`flex items-center justify-center w-6 h-6 ${data.color} text-white font-bold`}
-                ></div>
-                <h1 className="text-base text-center flex justify-center font-semibold text-gray-900">
-                  {data.label}
-                </h1>
+            <div key={index} className="flex gap-20">
+              <div
+                className={`flex items-center justify-center w-6 h-6 ${data.color} text-white font-bold`}
+              ></div>
+              <h1 className="text-base text-center flex justify-center font-semibold text-gray-900">
+                {data.label}
               </h1>
             </div>
           ))}
