@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 const Library = () => {
   const { t } = useTranslation();
   const [cards, setCards] = useState<any[]>([]);
+  const [filteredCards, setFilteredCards] = useState<any[]>([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -18,9 +19,10 @@ const Library = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`,
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-cards/${user?._id}`
       );
       setCards(res.data.cards);
+      setFilteredCards(res.data.cards);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -37,9 +39,21 @@ const Library = () => {
     // Sorting cards by date modified
     const sorted = cards.sort(
       (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     );
     setCards(sorted);
+  };
+
+  const handleSearch = (search: any) => {
+    const filtered = cards.filter((card) => {
+      return (
+        card.front.text.toLowerCase().includes(search.toLowerCase()) ||
+        card.back.text.toLowerCase().includes(search.toLowerCase()) ||
+        card.tags.join(", ").toLowerCase().includes(search.toLowerCase()) ||
+        card.note.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    setFilteredCards(filtered);
   };
 
   return (
@@ -49,19 +63,19 @@ const Library = () => {
         {/* Header */}
         <Header titleOne={t("Your Library")} titleTwo="" />
         {/* Main Content */}
-        <LibraryHeader />
+        <LibraryHeader handleSearch={handleSearch} />
         {isLoading ? (
           <div className="flex items-center justify-center h-[70vh] w-full">
             <BeatLoader color="#7573FF" />
           </div>
-        ) : cards && cards.length === 0 ? (
+        ) : filteredCards && filteredCards.length === 0 ? (
           <div className="flex items-center justify-center h-[70vh] w-full">
             <h1 className="text-2xl text-gray-800 font-semibold">
               {t("You have no cards in your library")}
             </h1>
           </div>
         ) : (
-          <LibraryTable cards={cards} handleSort={handleSort} />
+          <LibraryTable cards={filteredCards} handleSort={handleSort} />
         )}
       </div>
     </div>
