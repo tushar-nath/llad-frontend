@@ -3,15 +3,19 @@ import { Table } from "./Table";
 import { FilterIcon } from "../../svgs/filterIcon";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 export const LibraryTable = ({
   cards,
-  handleSort,
+  tags,
+  handleFilterByTag,
 }: {
   cards: any[];
-  handleSort: () => void;
+  tags: string[];
+  handleFilterByTag: (tag: string) => void;
 }) => {
   const { t } = useTranslation();
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const columns = [
     {
       Header: "",
@@ -28,7 +32,6 @@ export const LibraryTable = ({
       Header: (row: any) => {
         return (
           <div className="flex flex-row gap-1.5 items-center">
-            <FilterIcon />
             <h1 className="text-base font-bold text-gray-900">
               {t("Norwegian")}
             </h1>
@@ -41,7 +44,6 @@ export const LibraryTable = ({
       Header: (row: any) => {
         return (
           <div className="flex flex-row gap-1.5 items-center">
-            <FilterIcon />
             <h1 className="text-base font-bold text-gray-900">
               {t("English")}
             </h1>
@@ -53,9 +55,27 @@ export const LibraryTable = ({
     {
       Header: (row: any) => {
         return (
-          <div className="flex flex-row gap-1.5 items-center">
+          <div
+            className="flex flex-row gap-1.5 items-center cursor-pointer"
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
             <FilterIcon />
             <h1 className="text-base font-bold text-gray-900">{t("Tags")}</h1>
+            {showDropdown && (
+              <div className="absolute top-10 left-4 bg-white shadow-md rounded-md">
+                <div className="flex flex-col gap-2 p-2 h-28 overflow-y-auto">
+                  {tags.map((tag, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleFilterByTag(tag)}
+                      className="text-gray-900 text-base font-semibold bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         );
       },
@@ -78,7 +98,6 @@ export const LibraryTable = ({
       Header: (row: any) => {
         return (
           <div className="flex flex-row gap-1.5 items-center">
-            <FilterIcon />
             <h1 className="text-base font-bold text-gray-900">{t("Notes")}</h1>
           </div>
         );

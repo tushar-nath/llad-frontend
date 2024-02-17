@@ -14,6 +14,7 @@ const Library = () => {
   const [filteredCards, setFilteredCards] = useState<any[]>([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [tags, setTags] = useState<string[]>([]);
 
   const getCards = async () => {
     try {
@@ -33,6 +34,7 @@ const Library = () => {
 
   useEffect(() => {
     getCards();
+    getTags();
   }, []);
 
   const handleSort = () => {
@@ -56,6 +58,22 @@ const Library = () => {
     setFilteredCards(filtered);
   };
 
+  const handleFilterByTag = (tag: string) => {
+    const filtered = cards.filter((card) => card.tags.includes(tag));
+    setFilteredCards(filtered);
+  };
+
+  const getTags = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`
+      );
+      setTags(res.data.tags);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
       <Sidebar />
@@ -75,7 +93,11 @@ const Library = () => {
             </h1>
           </div>
         ) : (
-          <LibraryTable cards={filteredCards} handleSort={handleSort} />
+          <LibraryTable
+            cards={filteredCards}
+            handleFilterByTag={handleFilterByTag}
+            tags={tags}
+          />
         )}
       </div>
     </div>
