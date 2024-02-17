@@ -10,7 +10,6 @@ import { BeatLoader } from "react-spinners";
 
 const Library = () => {
   const [cards, setCards] = useState<any[]>([]);
-  console.log("hehehehehe", cards);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

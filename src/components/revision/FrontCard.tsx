@@ -12,8 +12,6 @@ export const FrontCard = ({
 }) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  console.log("hehehehe", card);
-
   return (
     <div
       className="flex flex-col gap-4 shadow-[0px_4px_44.099998474121094px_0px_#0000004F] w-[600px] h-[400px] rounded-[3rem] px-6 py-4 justify-center items-center relative bg-white"
