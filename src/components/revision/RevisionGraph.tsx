@@ -1,4 +1,3 @@
-import { Chart } from "chart.js";
 import ChartComponent from "./ChartComponent";
 
 export const RevisionGraph = () => {

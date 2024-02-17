@@ -5,15 +5,17 @@ import { LastWeekIcon } from "../../svgs/lastWeek";
 import { ReviseIcon } from "../../svgs/reviseIcon";
 import { TodayIcon } from "../../svgs/todayIcon";
 
+interface RevisionDashboardProps {
+  setShowCardPreview: React.Dispatch<React.SetStateAction<boolean>>;
+  tags: string[];
+  filterTags: (tag: string) => void;
+}
+
 export const RevisionDashboard = ({
   setShowCardPreview,
   tags,
   filterTags,
-}: {
-  setShowCardPreview: React.Dispatch<React.SetStateAction<boolean>>;
-  tags: string[];
-  filterTags: (tag: string) => void;
-}) => {
+}: RevisionDashboardProps) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const categories = [
     {

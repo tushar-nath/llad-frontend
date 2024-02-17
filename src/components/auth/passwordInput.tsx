@@ -18,7 +18,8 @@ const PasswordInput = ({
   setStrength,
   strength,
 }: PasswordInputProps) => {
-  const [passwordStrengthLevel, setPasswordStrengthLevel] = useState("");
+  const [passwordStrengthLevel, setPasswordStrengthLevel] =
+    useState<string>("");
 
   const strengthColors = [
     { color: "text-red-600" },
@@ -30,7 +31,6 @@ const PasswordInput = ({
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     const strength = passwordStrength(password);
-    console.log(strength);
     setStrength && setStrength(strength.id);
     setPasswordStrengthLevel(strength.value);
     setValue(password);

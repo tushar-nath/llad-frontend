@@ -1,4 +1,4 @@
-import { createContext, useCallback, useMemo, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 interface CardContextProps {
   card: {
@@ -53,7 +53,7 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({
     }) => {
       setCard(cardData);
     },
-    [],
+    []
   );
 
   const removeCard = useCallback(() => {

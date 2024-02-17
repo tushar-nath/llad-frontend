@@ -22,6 +22,7 @@ const Stats = () => {
       Icon: <CalculatorIcon />,
     },
   ];
+
   return (
     <div className="flex flex-col gap-4 w-full p-6 rounded-3xl shadow-[1px_4px_22.3px_0px_rgba(0,_0,_0,_0.25)]">
       <div className="flex items-center gap-3">

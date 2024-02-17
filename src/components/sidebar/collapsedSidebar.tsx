@@ -16,6 +16,7 @@ interface ExpandedSidebarProps {
 const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
   const navigate = useNavigate();
   const URL = window.location.href;
+
   return (
     <div className="h-full w-28 rounded-3xl shadow-[1px_4px_46px_0px_#0000004A]">
       <div className="flex items-center justify-center py-7 relative">
@@ -33,7 +34,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
         <div className="flex flex-col justify-center items-center gap-7 px-6 w-full">
           <button
             onClick={() => navigate("/dashboard")}
-            className={`flex items-center justify-between rounded-[3rem] px-0`}
+            className="flex items-center justify-between rounded-[3rem] px-0"
           >
             <DashboardIcon
               size={URL.includes("dashboard") && !expanded ? "56" : "36"}
@@ -41,7 +42,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
           </button>
           <button
             onClick={() => navigate("/create")}
-            className={`flex items-center justify-between rounded-[3rem] px-0`}
+            className="flex items-center justify-between rounded-[3rem] px-0"
           >
             <CreateIcon
               size={URL.includes("create") && !expanded ? "56" : "36"}
@@ -49,7 +50,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
           </button>
           <button
             onClick={() => navigate("/library")}
-            className={`flex items-center justify-between rounded-[3rem] px-0`}
+            className="flex items-center justify-between rounded-[3rem] px-0"
           >
             <GroupIcon
               size={URL.includes("library") && !expanded ? "56" : "36"}
@@ -57,7 +58,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
           </button>
           <button
             onClick={() => navigate("/revision")}
-            className={`flex items-center justify-between rounded-[3rem] px-0`}
+            className="flex items-center justify-between rounded-[3rem] px-0"
           >
             <RevisionIconSidebar
               size={URL.includes("revision") && !expanded ? "56" : "36"}
@@ -68,7 +69,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
               localStorage.removeItem("user");
               navigate("/");
             }}
-            className={`flex items-center justify-between rounded-[3rem] px-0`}
+            className="flex items-center justify-between rounded-[3rem] px-0"
           >
             <LogoutIcon />
           </button>

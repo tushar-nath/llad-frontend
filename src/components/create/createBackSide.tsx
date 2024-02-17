@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Tag from "./Tag";
 import { TextIcon } from "../../svgs/textIcon";
 import { GridIcon } from "../../svgs/gridIcon";
+import Tag from "./Tag";
 
 interface CreateBackSideProps {
   setNorwegianWord: Dispatch<SetStateAction<string>>;
@@ -38,7 +38,7 @@ const CreateBackSide = ({
         <input
           type="text"
           className="w-full h-16 rounded-2xl outline-none px-2 text-gray-900 font-medium"
-          placeholder="Enter text in Norwegian language"
+          placeholder="Enter text in Norwegian Language"
           value={norwegianWord}
           onChange={(e) => setNorwegianWord(e.target.value)}
         />
@@ -48,7 +48,7 @@ const CreateBackSide = ({
         <input
           type="text"
           className="w-full h-16 rounded-2xl outline-none px-2 text-gray-900 font-medium"
-          placeholder="Example in Norwegian"
+          placeholder="Example in Norwegian Language"
           value={norwegianExample}
           onChange={(e) => setNorwegianExample(e.target.value)}
         />
@@ -79,7 +79,6 @@ const CreateBackSide = ({
             <div
               key={index}
               className="flex items-center justify-center px-2 h-8 rounded-lg border-[1.5px] border-bluePrimary bg-white text-gray-600 font-bold shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)]"
-              // style={{ flexBasis: "25%" }}
             >
               {tag}
             </div>

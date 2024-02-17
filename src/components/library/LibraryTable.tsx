@@ -1,9 +1,7 @@
-import { useTable } from "react-table";
 import { EditIcon } from "../../svgs/editIcon";
 import { Table } from "./Table";
 import { FilterIcon } from "../../svgs/filterIcon";
 import moment from "moment";
-import { useEffect, useState } from "react";
 
 export const LibraryTable = ({
   cards,
@@ -60,10 +58,7 @@ export const LibraryTable = ({
     {
       Header: (row: any) => {
         return (
-          <div
-            className="flex flex-row gap-1.5 items-center"
-            // onClick={() => handleSort()}
-          >
+          <div className="flex flex-row gap-1.5 items-center">
             <FilterIcon />
             <h1 className="text-base font-bold text-gray-900">Date Modified</h1>
           </div>

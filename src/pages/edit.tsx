@@ -30,8 +30,6 @@ const Edit = () => {
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  console.log(card);
-
   const handleSave = async () => {
     try {
       await axios.patch(

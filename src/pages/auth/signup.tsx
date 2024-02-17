@@ -17,7 +17,7 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
-  const [strength, setStrength] = useState(0);
+  const [strength, setStrength] = useState<number>(0);
 
   useEffect(() => {
     const user = localStorage.getItem("user");

@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import CustomInput from "../../components/auth/customInput";
-import { GoogleIcon } from "../../svgs/googleIcon";
 import { KeyIcon } from "../../svgs/keyIcon";
 import { useNavigate } from "react-router-dom";
 import AuthButton from "../../components/auth/authButton";
@@ -16,11 +15,7 @@ const ResetPassword = () => {
   useEffect(() => {
     const url = window.location.href;
     const urlParams = new URL(url);
-
-    console.log(url);
     const userData = urlParams.searchParams.get("user");
-
-    console.log(userData);
 
     if (userData) {
       const user = JSON.parse(userData);
@@ -40,7 +35,7 @@ const ResetPassword = () => {
     const url = window.location.href;
     const token = url.split("?")[1];
     setToken(token);
-  });
+  }, []);
 
   const handleReset = async () => {
     try {
@@ -60,7 +55,7 @@ const ResetPassword = () => {
   return (
     <div className="bg-white w-full h-[100vh]">
       <div className="flex items-center justify-center h-full">
-        <div className="w-[480px] h-[600px] bg-[#F9F9F9] flex flex-col justify-center  items-center relative rounded-[3rem] shadow-[8px_8px_22.7px_6px_rgba(0,_0,_0,_0.25)] py-6">
+        <div className="w-[480px] h-[600px] bg-[#F9F9F9] flex flex-col justify-center items-center relative rounded-[3rem] shadow-[8px_8px_22.7px_6px_rgba(0,_0,_0,_0.25)] py-6">
           <h2 className="text-3xl font-bold text-bluePrimary text-center">
             Reset Password
           </h2>

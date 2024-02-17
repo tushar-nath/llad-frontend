@@ -32,8 +32,6 @@ const Library = () => {
     getCards();
   }, []);
 
-  console.log("sorting");
-
   const handleSort = () => {
     // Sorting cards by date modified
     const sorted = cards.sort(
@@ -42,8 +40,6 @@ const Library = () => {
     );
     setCards(sorted);
   };
-
-  console.log(cards);
 
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">

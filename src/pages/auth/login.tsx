@@ -18,11 +18,7 @@ const Login = () => {
   useEffect(() => {
     const url = window.location.href;
     const urlParams = new URL(url);
-
-    console.log(url);
     const userData = urlParams.searchParams.get("user");
-
-    console.log(userData);
 
     if (userData) {
       const user = JSON.parse(userData);

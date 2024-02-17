@@ -1,12 +1,10 @@
-const StatsCard = ({
-  stat,
-  value,
-  icon,
-}: {
+interface StatsCardProps {
   stat: string;
   value: string;
-  icon: any;
-}) => {
+  icon: React.ReactNode;
+}
+
+const StatsCard = ({ stat, value, icon }: StatsCardProps) => {
   return (
     <div className="flex justify-between items-center w-[75%]">
       <div className="flex items-center gap-6">
@@ -17,7 +15,7 @@ const StatsCard = ({
         </div>
       </div>
       <div className="rounded-full bg-[#B1FFAF] px-2.5 py-2">
-        <h1 className="text-sm font-semibold text-gray-800">{99}</h1>
+        <h1 className="text-sm font-semibold text-gray-800">99</h1>
       </div>
     </div>
   );

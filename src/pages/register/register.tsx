@@ -24,7 +24,7 @@ const Register = () => {
         {
           userId: user?._id,
           currentNorwegianSkill: norwegianLevel,
-        },
+        }
       );
       storeUser(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -33,15 +33,10 @@ const Register = () => {
     }
   };
 
-  console.log(user);
-  console.log(norwegianLevel);
-
   useEffect(() => {
     const url = window.location.href;
     const urlParams = new URL(url);
     const userData = urlParams.searchParams.get("user");
-
-    console.log(userData);
 
     if (userData) {
       const user = JSON.parse(userData);
@@ -51,7 +46,6 @@ const Register = () => {
   }, []);
 
   useEffect(() => {
-    console.log(user);
     if (norwegianLevel && user) {
       updateAccount();
       navigate("/dashboard");

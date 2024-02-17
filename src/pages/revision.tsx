@@ -36,7 +36,6 @@ const Revision = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/get-tags/${user?._id}`
       );
-      console.log(res.data.tags);
       setTags(res.data.tags);
     } catch (error) {
       console.error(error);
