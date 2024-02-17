@@ -4,27 +4,29 @@ import { FormIcon } from "../../svgs/formIcon";
 import { GroupWhiteIcon } from "../../svgs/groupWhiteIcon";
 import { NoteIcon } from "../../svgs/noteIcon";
 import GetStartedCard from "./getStartedCard";
+import { useTranslation } from "react-i18next";
 
 const GetStarted = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const Items = [
     {
-      title: "Create a Flash Card",
+      title: t("Create a Flash Card"),
       icon: <CreateIconWhite />,
       navigate: "/create",
     },
     {
-      title: "Your Library",
+      title: t("Your Library"),
       icon: <GroupWhiteIcon />,
       navigate: "/library",
     },
     {
-      title: "Improve Your Vocabulary",
+      title: t("Improve Your Vocabulary"),
       icon: <NoteIcon />,
       navigate: "/revision",
     },
     {
-      title: "Fill Forms",
+      title: t("Fill Forms"),
       icon: <FormIcon />,
       navigate: "/forms",
     },
@@ -32,7 +34,7 @@ const GetStarted = () => {
 
   return (
     <div className="flex flex-col gap-2 w-full rounded-3xl shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] p-5">
-      <h1 className="text-2xl font-bold text-bluePrimary">Dashboard</h1>
+      <h1 className="text-2xl font-bold text-bluePrimary">{t("Dashboard")}</h1>
       <div className="flex flex-wrap justify-center">
         {Items.map((item) => {
           return (

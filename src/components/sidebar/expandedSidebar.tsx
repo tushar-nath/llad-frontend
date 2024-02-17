@@ -9,6 +9,7 @@ import { DashboardIcon } from "../../svgs/dashboardIcon";
 import { CreateIcon } from "../../svgs/createIcon";
 import { GroupIcon } from "../../svgs/groupIcon";
 import { RevisionIconSidebar } from "../../svgs/revisionIconSidebar";
+import { useTranslation } from "react-i18next";
 
 interface ExpandedSidebarProps {
   expanded: boolean;
@@ -16,6 +17,7 @@ interface ExpandedSidebarProps {
 }
 
 const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const URL = window.location.href;
   const { user } = useContext(UserContext);
@@ -30,7 +32,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
                 {user?.name.split(" ")[0]}
               </h2>
               <button className="text-bluePrimary font-bold text-sm">
-                View Profile
+                {t("View Profile")}
               </button>
             </div>
           )}
@@ -53,7 +55,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
               <h2
                 className={`${URL.includes("dashboard") ? "text-white" : "text-gray-900"} font-semibold text-base`}
               >
-                Dashboard
+                {t("Dashboard")}
               </h2>
             )}
             <DashboardIcon
@@ -68,7 +70,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
               <h2
                 className={`${URL.includes("create") ? "text-white" : "text-gray-900"} font-semibold text-base`}
               >
-                Add Flash Cards
+                {t("Add Flash Cards")}
               </h2>
             )}
             <CreateIcon
@@ -83,7 +85,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
               <h2
                 className={`${URL.includes("library") ? "text-white" : "text-gray-900"} font-semibold text-base`}
               >
-                Your Library
+                {t("Your Library")}
               </h2>
             )}
             <GroupIcon
@@ -98,7 +100,7 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
               <h2
                 className={`${URL.includes("revision") ? "text-white" : "text-gray-900"} font-semibold text-base`}
               >
-                Revisions
+                {t("Revision")}
               </h2>
             )}
             <RevisionIconSidebar
@@ -113,7 +115,9 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
             className={`flex items-center justify-between rounded-[3rem] py-2 px-6 w-full`}
           >
             {expanded && (
-              <h2 className="text-gray-900 font-semibold text-base">Log Out</h2>
+              <h2 className="text-gray-900 font-semibold text-base">
+                {t("Log Out")}
+              </h2>
             )}
             <LogoutIcon />
           </button>

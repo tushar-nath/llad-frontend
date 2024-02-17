@@ -12,7 +12,26 @@
       "Your Library": "Your Library",
       "You have no cards in your library": "You have no cards in your library",
       "Revision": "Revision",
-      "No cards to revise": "No cards to revise"
+      "No cards to revise": "No cards to revise",
+      "Create a Flash Card": "Create a Flash Card",
+      "Improve Your Vocabulary": "Improve Your Vocabulary",
+      "Fill Forms": "Fill Forms",
+      "Dashboard": "Dashboard",
+      "Today": "Today",
+      "Last Week": "Last Week",
+      "Last 15 Days": "Last 15 Days",
+      "Last 30 Days": "Last 30 Days",
+      "Quick Revision": "Quick Revision",
+      "Stats": "Stats",
+      "Active hours this week": "Active hours this week",
+      "12 Hours more than last week": "12 Hours more than last week",
+      "Words in your library": "Words in your library",
+      "You have added 12 more words than last week": "You have added 12 more words than last week",
+      "Words learned this week": "Words learned this week",
+      "You have learned 40 words this week": "You have learned 40 words this week",
+      "View Profile": "View Profile",
+      "Add Flash Cards": "Add Flash Cards",
+      "Log Out": "Log Out"
     }
   },
   "no": {
@@ -28,7 +47,26 @@
       "Your Library": "Ditt bibliotek",
       "You have no cards in your library": "Du har ingen kort i biblioteket ditt",
       "Revision": "Revisjon",
-      "No cards to revise": "Ingen kort å revidere"
+      "No cards to revise": "Ingen kort å revidere",
+      "Create a Flash Card": "Lag et Flash-kort",
+      "Improve Your Vocabulary": "Forbedre ordforrådet ditt",
+      "Fill Forms": "Fyll ut skjemaer",
+      "Dashboard": "Dashbord",
+      "Today": "I dag",
+      "Last Week": "Siste uke",
+      "Last 15 Days": "Siste 15 dager",
+      "Last 30 Days": "Siste 30 dager",
+      "Quick Revision": "Rask revisjon",
+      "Stats": "Statistikk",
+      "Active hours this week": "Aktive timer denne uken",
+      "12 Hours more than last week": "12 timer mer enn forrige uke",
+      "Words in your library": "Ord i biblioteket ditt",
+      "You have added 12 more words than last week": "Du har lagt til 12 flere ord enn forrige uke",
+      "Words learned this week": "Ord lært denne uken",
+      "You have learned 40 words this week": "Du har lært 40 ord denne uken",
+      "View Profile": "Vis profil",
+      "Add Flash Cards": "Legg til Flash-kort",
+      "Log Out": "Logg ut"
     }
   }
 }

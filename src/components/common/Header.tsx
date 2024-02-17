@@ -24,7 +24,7 @@ export const Header = ({ titleOne, titleTwo }: HeaderProps) => {
       setSelectedLanguage(language);
       i18n.changeLanguage(language === "english" ? "en" : "no");
     }
-  }, []);
+  }, [i18n.language]);
 
   return (
     <div className="flex justify-between w-full">
