@@ -47,7 +47,14 @@
       "Note": "Note",
       "Norwegian": "Norwegian",
       "English": "English",
-      "Date Modified": "Date Modified"
+      "Date Modified": "Date Modified",
+      "Revise All": "Revise All",
+      "Revise by Category": "Revise by Category",
+      "Revised Today": "Revised Today",
+      "Revised Last Week": "Revised Last Week",
+      "Revised Last 15 Days": "Revised Last 15 Days",
+      "Revised Last 30 Days": "Revised Last 30 Days",
+      "Revised Last 60 Days": "Revised Last 60 Days"
     }
   },
   "no": {
@@ -98,7 +105,14 @@
       "Note": "Merk",
       "Norwegian": "Norsk",
       "English": "Engelsk",
-      "Date Modified": "Dato endret"
+      "Date Modified": "Dato endret",
+      "Revise All": "Revider alle",
+      "Revise by Category": "Revider etter kategori",
+      "Revised Today": "Revidert i dag",
+      "Revised Last Week": "Revidert forrige uke",
+      "Revised Last 15 Days": "Revidert siste 15 dager",
+      "Revised Last 30 Days": "Revidert siste 30 dager",
+      "Revised Last 60 Days": "Revidert siste 60 dager"
     }
   }
 }

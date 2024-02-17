@@ -4,6 +4,7 @@ import { Last30DaysIcon } from "../../svgs/last30DaysIcon";
 import { LastWeekIcon } from "../../svgs/lastWeek";
 import { ReviseIcon } from "../../svgs/reviseIcon";
 import { TodayIcon } from "../../svgs/todayIcon";
+import { useTranslation } from "react-i18next";
 
 interface RevisionDashboardProps {
   setShowCardPreview: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,30 +17,31 @@ export const RevisionDashboard = ({
   tags,
   filterTags,
 }: RevisionDashboardProps) => {
+  const { t } = useTranslation();
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const categories = [
     {
-      label: "Revise All",
+      label: t("Revise All"),
       icon: <ReviseIcon />,
     },
     {
-      label: "Revise by Category",
+      label: t("Revise by Category"),
       icon: <ReviseIcon />,
     },
     {
-      label: "Today",
+      label: t("Today"),
       icon: <TodayIcon />,
     },
     {
-      label: "Last Week",
+      label: t("Last Week"),
       icon: <LastWeekIcon />,
     },
     {
-      label: "Last 15 Days",
+      label: t("Last 15 Days"),
       icon: <Last15DaysIcon />,
     },
     {
-      label: "Last 30 Days",
+      label: t("Last 30 Days"),
       icon: <Last30DaysIcon />,
     },
   ];
@@ -53,7 +55,10 @@ export const RevisionDashboard = ({
               key={index}
               className="flex flex-row items-center gap-4 bg-white w-80 px-6 py-5 border-bluePrimary hover:border-gray-400 transition-colors duration-300 rounded-2xl shadow-sm border-[1.5px]"
               onClick={() => {
-                if (category.label === "Revise by Category") {
+                if (
+                  category.label === "Revise by Category" ||
+                  category.label === "Revider etter kategori"
+                ) {
                   setShowDropdown((prev) => !prev);
                 } else {
                   setShowCardPreview(true);
@@ -65,22 +70,24 @@ export const RevisionDashboard = ({
                 {category.label}
               </h1>
             </button>
-            {showDropdown && category.label === "Revise by Category" && (
-              <div
-                className="flex flex-col gap-2 absolute top-[240px] left-[532px] bg-white w-80 border-bluePrimary transition-colors duration-300 rounded-2xl shadow-sm border-[1.5px]"
-                onClick={() => setShowDropdown(false)}
-              >
-                {tags.map((tag, index) => (
-                  <button
-                    key={index}
-                    className="text-lg text-center font-semibold text-gray-900 hover:bg-bluePrimary py-2 px-5 rounded-xl hover:text-white"
-                    onClick={() => filterTags(tag)}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            )}
+            {showDropdown &&
+              (category.label === "Revise by Category" ||
+                category.label === "Revider etter kategori") && (
+                <div
+                  className="flex flex-col gap-2 absolute top-[240px] left-[532px] bg-white w-80 border-bluePrimary transition-colors duration-300 rounded-2xl shadow-sm border-[1.5px]"
+                  onClick={() => setShowDropdown(false)}
+                >
+                  {tags.map((tag, index) => (
+                    <button
+                      key={index}
+                      className="text-lg text-center font-semibold text-gray-900 hover:bg-bluePrimary py-2 px-5 rounded-xl hover:text-white"
+                      onClick={() => filterTags(tag)}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              )}
           </div>
         ))}
       </div>

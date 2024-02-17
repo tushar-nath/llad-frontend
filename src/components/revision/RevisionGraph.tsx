@@ -1,25 +1,27 @@
+import { useTranslation } from "react-i18next";
 import ChartComponent from "./ChartComponent";
 
 export const RevisionGraph = () => {
+  const { t } = useTranslation();
   const graphData = [
     {
-      label: "Revised Today",
+      label: t("Revised Today"),
       color: "bg-[#F1FF4C]",
     },
     {
-      label: "Revised Last Week",
+      label: t("Revised Last Week"),
       color: "bg-[#0DB3FB]",
     },
     {
-      label: "Revised Last 15 Days",
+      label: t("Revised Last 15 Days"),
       color: "bg-[#001376]",
     },
     {
-      label: "Revised Last 30 Days",
+      label: t("Revised Last 30 Days"),
       color: "bg-[#9000D4]",
     },
     {
-      label: "Revised Last 60 Days",
+      label: t("Revised Last 60 Days"),
       color: "bg-[#DC005C]",
     },
   ];
@@ -34,7 +36,9 @@ export const RevisionGraph = () => {
                 <div
                   className={`flex items-center justify-center w-6 h-6 ${data.color} text-white font-bold`}
                 ></div>
-                {data.label}
+                <h1 className="text-base text-center flex justify-center font-semibold text-gray-900">
+                  {data.label}
+                </h1>
               </h1>
             </div>
           ))}
