@@ -14,7 +14,7 @@ const Revision = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 w-[30%] h-[350px] rounded-3xl shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] p-5">
+    <div className="flex flex-col gap-4 w-[30%] h-[360px] rounded-3xl shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] p-5">
       <div className="flex items-center gap-3">
         <RevisionIcon />
         <h1 className="xl:text-xl text-sm text-gray-800 font-semibold">
