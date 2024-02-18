@@ -29,8 +29,12 @@ export const Header = ({ titleOne, titleTwo }: HeaderProps) => {
   return (
     <div className="flex justify-between w-full">
       <div className="flex flex-row gap-1.5 py-2">
-        <h1 className="text-3xl font-bold text-gray-900">{titleOne}</h1>
-        <p className="text-bluePrimary font-bold text-3xl">{titleTwo}</p>
+        <h1 className="xl:text-3xl text-2xl font-bold text-gray-900">
+          {titleOne}
+        </h1>
+        <p className="text-bluePrimary font-bold xl:text-3xl text-2xl">
+          {titleTwo}
+        </p>
       </div>
       <div className="flex items-center gap-4">
         <button
@@ -42,7 +46,7 @@ export const Header = ({ titleOne, titleTwo }: HeaderProps) => {
         <div className="flex flex-row gap-4">
           <LanguageIcon />
           <select
-            className="w-28 outline-none text-bluePrimary font-semibold"
+            className="w-28 xl:text-lg text-sm outline-none text-bluePrimary font-semibold"
             value={selectedLanguage}
             onChange={(e) => {
               setSelectedLanguage(e.target.value);

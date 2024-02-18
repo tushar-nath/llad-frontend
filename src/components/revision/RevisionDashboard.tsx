@@ -47,13 +47,13 @@ export const RevisionDashboard = ({
   ];
 
   return (
-    <div className="flex flex-col flex-1 gap-10 bg-white w-full shadow-[0px_4px_31.100000381469727px_0px_#00000040] rounded-[2rem] p-6">
-      <div className="flex flex-wrap gap-4">
+    <div className="flex flex-col flex-1 gap-10 bg-white w-full shadow-[0px_4px_31.100000381469727px_0px_#00000040] rounded-[2rem] xl:p-6 p-5">
+      <div className="flex flex-wrap xl:gap-4 gap-3">
         {categories.map((category, index) => (
           <div className="flex flex-col">
             <button
               key={index}
-              className="flex flex-row items-center gap-4 bg-white w-80 px-6 py-5 border-bluePrimary hover:border-gray-400 transition-colors duration-300 rounded-2xl shadow-sm border-[1.5px]"
+              className="flex flex-row items-center gap-4 bg-white w-80 px-6 xl:py-5 py-3.5 border-bluePrimary hover:border-gray-400 transition-colors duration-300 rounded-2xl shadow-sm border-[1.5px]"
               onClick={() => {
                 if (
                   category.label === "Revise by Category" ||
@@ -66,7 +66,7 @@ export const RevisionDashboard = ({
               }}
             >
               {category.icon}
-              <h1 className="text-lg text-center flex justify-center font-semibold text-gray-900">
+              <h1 className="xl:text-lg text-base text-center flex justify-center font-semibold text-gray-900">
                 {category.label}
               </h1>
             </button>

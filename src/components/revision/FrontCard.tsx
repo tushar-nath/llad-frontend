@@ -1,8 +1,10 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { DotsIcon } from "../../svgs/dotsIcon";
 import { StarIcon } from "../../svgs/starIcon";
 import { EditIcon } from "../../svgs/editIcon";
 import { useTranslation } from "react-i18next";
+import { CardContext } from "../../contexts/cardContext";
+import { useNavigate } from "react-router-dom";
 
 export const FrontCard = ({
   card,
@@ -13,6 +15,8 @@ export const FrontCard = ({
 }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const { storeCard } = useContext(CardContext);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -32,8 +36,8 @@ export const FrontCard = ({
         <div className="absolute flex flex-col top-14 right-8 bg-[#E5E5E5] text-bluePrimary font-semibold gap-2 shadow-lg rounded-lg p-4 px-6">
           <button
             onClick={() => {
-              setIsFlipped(false);
-              setShowMenu(false);
+              storeCard(card);
+              navigate("/edit");
             }}
             className="border-b border-gray-400 pb-2 flex flex-row gap-2 items-center"
           >

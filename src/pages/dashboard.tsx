@@ -16,7 +16,7 @@ const Dashboard = () => {
         <Header titleOne={t("Welcome To")} titleTwo={t("Learning App")} />
         {/* Main Content */}
         <div className="flex flex-row gap-12">
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col xl:gap-10 gap-6">
             <GetStarted />
             <Stats />
           </div>

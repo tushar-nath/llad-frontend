@@ -31,7 +31,10 @@ const ExpandedSidebar = ({ expanded, setExpanded }: ExpandedSidebarProps) => {
               <h2 className="text-gray-900 font-bold text-2xl">
                 {user?.name.split(" ")[0]}
               </h2>
-              <button className="text-bluePrimary font-bold text-sm">
+              <button
+                className="text-bluePrimary font-bold text-sm"
+                onClick={() => navigate("/profile")}
+              >
                 {t("View Profile")}
               </button>
             </div>

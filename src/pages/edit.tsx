@@ -9,30 +9,36 @@ import { SuccessModal } from "../components/common/SuccessModal";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/common/Header";
 import { useTranslation } from "react-i18next";
+import { BeatLoader } from "react-spinners";
+import { ErrorModal } from "../components/common/ErrorModal";
 
 const Edit = () => {
   const { t } = useTranslation();
   const { card } = useContext(CardContext);
   const [nativeWord, setNativeWord] = useState<string>(
-    card ? card.englishWord : "",
+    card ? card.englishWord : ""
   );
   const [norwegianWord, setNorwegianWord] = useState<string>(
-    card ? card.norwegianWord : "",
+    card ? card.norwegianWord : ""
   );
   const [nativeExample, setNativeExample] = useState<string>(
-    card ? card.englishExample : "",
+    card ? card.englishExample : ""
   );
   const [norwegianExample, setNorwegianExample] = useState<string>(
-    card ? card.norwegianExample : "",
+    card ? card.norwegianExample : ""
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
   const [tags, setTags] = useState<string[]>(card ? card.tags.split(",") : []);
   const { user } = useContext(UserContext);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [saving, setSaving] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSave = async () => {
     try {
+      setSaving(true);
       await axios.patch(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/update-card`,
         {
@@ -44,12 +50,14 @@ const Edit = () => {
           backExample: norwegianExample,
           note,
           tags,
-        },
+        }
       );
+      setSaving(false);
       setShowSuccessModal(true);
     } catch (error) {
-      alert("Card creation failed");
-      console.error(error);
+      setSaving(false);
+      setErrorMessage(t("Card updation failed"));
+      setShowErrorModal(true);
     }
   };
 
@@ -88,13 +96,25 @@ const Edit = () => {
             className="border-[1.5px] border-bluePrimary px-14 transition-all duration-300 hover:shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl text-bluePrimary font-bold text-lg py-3"
             onClick={handleSave}
           >
-            {t("Update")}
+            {saving ? (
+              <span className="flex items-center justify-center px-2 py-1.5">
+                <BeatLoader color="#7573FF" loading={true} size={12} />
+              </span>
+            ) : (
+              t("Update")
+            )}
           </button>
         </div>
         {showSuccessModal && (
           <SuccessModal
             handleClose={handleClose}
             message="Card updated successfully!"
+          />
+        )}
+        {showErrorModal && (
+          <ErrorModal
+            handleClose={() => setShowErrorModal(false)}
+            message={errorMessage}
           />
         )}
       </div>

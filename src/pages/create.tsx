@@ -8,6 +8,7 @@ import { SuccessModal } from "../components/common/SuccessModal";
 import { Header } from "../components/common/Header";
 import { useTranslation } from "react-i18next";
 import { ErrorModal } from "../components/common/ErrorModal";
+import { BeatLoader } from "react-spinners";
 
 const Create = () => {
   const { t } = useTranslation();
@@ -21,9 +22,22 @@ const Create = () => {
   const [tags, setTags] = useState<string[]>([]);
   const { user } = useContext(UserContext);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [saving, setSaving] = useState<boolean>(false);
 
   const handleSave = async () => {
     try {
+      setSaving(true);
+      if (
+        !nativeWord ||
+        !norwegianWord ||
+        !nativeExample ||
+        !norwegianExample
+      ) {
+        setSaving(false);
+        setErrorMessage(t("Please fill all the fields"));
+        setShowErrorModal(true);
+        return;
+      }
       await axios.post(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/create-card`,
         {
@@ -36,9 +50,11 @@ const Create = () => {
           tags,
         }
       );
+      setSaving(false);
       resetValues();
       setShowSuccessModal(true);
     } catch (error) {
+      setSaving(false);
       setErrorMessage(t("Card creation failed"));
       setShowErrorModal(true);
       console.error(error);
@@ -83,8 +99,15 @@ const Create = () => {
           <button
             className="border-[1.5px] border-bluePrimary px-14 transition-all duration-300 hover:shadow-[1px_4px_14.5px_0px_rgba(0,_0,_0,_0.25)] rounded-2xl text-bluePrimary font-bold text-lg py-3"
             onClick={handleSave}
+            disabled={saving}
           >
-            {t("Create")}
+            {saving ? (
+              <span className="flex items-center justify-center px-2 py-1.5">
+                <BeatLoader color="#7573FF" loading={true} size={12} />
+              </span>
+            ) : (
+              t("Create")
+            )}
           </button>
         </div>
         {showSuccessModal && (

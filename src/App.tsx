@@ -16,6 +16,7 @@ import Revision from "./pages/revision";
 
 import "./styles/index.css";
 import "./i18n";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/create" element={<Create />} />
             <Route path="/library" element={<Library />} />
             <Route path="/revision" element={<Revision />} />
