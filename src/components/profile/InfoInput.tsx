@@ -22,7 +22,7 @@ export const InfoInput = ({
         type="text"
         placeholder={placeholder}
         value={value}
-        className="text-sm font-semibold text-gray-900 outline-none bg-white"
+        className="text-sm font-semibold text-gray-900 outline-none bg-white w-48"
         onChange={(e) => setValue(e.target.value)}
         disabled={!isEditable}
       />
