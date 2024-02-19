@@ -17,8 +17,6 @@ export const Table = ({ columns, data, handleUpdateStarred }: any) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns: columns, data }, useSortBy);
 
-  console.log("card", showCardPreview);
-
   return (
     <>
       <table

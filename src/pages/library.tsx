@@ -18,6 +18,8 @@ const Library = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>("");
+  const [isFilteredByStarred, setIsFilteredByStarred] =
+    useState<boolean>(false);
 
   const getCards = async () => {
     try {
@@ -106,7 +108,19 @@ const Library = () => {
         {/* Header */}
         <Header titleOne={t("Your Library")} titleTwo="" />
         {/* Main Content */}
-        <LibraryHeader handleSearch={handleSearch} />
+        <LibraryHeader
+          handleSearch={handleSearch}
+          handleFilterByStarred={() => {
+            if (isFilteredByStarred) {
+              setIsFilteredByStarred(false);
+              setFilteredCards(cards);
+            } else {
+              const filtered = cards.filter((card) => card.isStarred);
+              setIsFilteredByStarred(true);
+              setFilteredCards(filtered);
+            }
+          }}
+        />
         <div className="h-[70vh] w-full items-center justify-end overflow-y-scroll bg-white">
           {isLoading ? (
             <div className="flex items-center justify-center h-[70vh] w-full">
