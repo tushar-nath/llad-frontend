@@ -59,7 +59,11 @@ export const ProfileInfo = () => {
           <UserPlaceholder />
         )}
         <div>
-          <button className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl">
+          <button
+            className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl"
+            data-tooltip-content="Coming soon"
+            data-tooltip-id="coming-soon-tooltip"
+          >
             Change Picture
           </button>
         </div>
