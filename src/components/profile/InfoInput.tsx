@@ -6,11 +6,13 @@ export const InfoInput = ({
   value,
   setValue,
   handleUpdate,
+  placeholder,
 }: {
   type?: string;
   value: string;
   setValue: (value: string) => void;
   handleUpdate?: () => void;
+  placeholder: string;
 }) => {
   const [isEditable, setIsEditable] = useState<boolean>(false);
   const { user } = useContext(UserContext) as any;
@@ -18,7 +20,7 @@ export const InfoInput = ({
     <div className="flex gap-4 justify-between items-center">
       <input
         type="text"
-        placeholder="Add Name"
+        placeholder={placeholder}
         value={value}
         className="text-sm font-semibold text-gray-900 outline-none bg-white"
         onChange={(e) => setValue(e.target.value)}

@@ -77,6 +77,7 @@ export const ProfileInfo = () => {
             value={userName}
             setValue={setUserName}
             handleUpdate={handleUpdate}
+            placeholder="Add your name"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -86,6 +87,7 @@ export const ProfileInfo = () => {
             value={userEmail}
             setValue={setUserEmail}
             handleUpdate={handleUpdate}
+            placeholder="Add your email"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -94,6 +96,7 @@ export const ProfileInfo = () => {
             value={userPhoneNo}
             setValue={setUserPhoneNo}
             handleUpdate={handleUpdate}
+            placeholder="Add phone number"
           />
         </div>
       </div>
