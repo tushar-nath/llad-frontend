@@ -10,10 +10,12 @@ const CardPreview = ({
   card,
   getCards,
   updateIndex,
+  setShowCardPreview,
 }: {
   card: any;
   getCards: any;
   updateIndex: any;
+  setShowCardPreview: any;
 }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const { user } = useContext(UserContext);
@@ -26,7 +28,7 @@ const CardPreview = ({
           userId: user?._id,
           cardId,
           grade,
-        },
+        }
       );
       updateIndex((prev: number) => prev + 1);
       setIsFlipped(false);
@@ -39,8 +41,18 @@ const CardPreview = ({
     <div className="bg-white w-full h-[70vh] flex flex-col gap-10 rounded-3xl items-center justify-center shadow-[5px_4px_30.100000381469727px_0px_#00000040]">
       <div className="flex flex-col gap-6 items-center">
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-          <FrontCard key="front" card={card} setIsFlipped={setIsFlipped} />
-          <BackCard key="back" card={card} setIsFlipped={setIsFlipped} />
+          <FrontCard
+            key="front"
+            card={card}
+            setIsFlipped={setIsFlipped}
+            setShowCardPreview={setShowCardPreview}
+          />
+          <BackCard
+            key="back"
+            card={card}
+            setIsFlipped={setIsFlipped}
+            setShowCardPreview={setShowCardPreview}
+          />
         </ReactCardFlip>
         {isFlipped && <GradeSelector handleGrade={handleGrade} card={card} />}
       </div>

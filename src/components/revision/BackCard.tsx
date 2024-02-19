@@ -9,14 +9,20 @@ import { useNavigate } from "react-router-dom";
 export const BackCard = ({
   card,
   setIsFlipped,
+  handleUpdateStarred,
+  setShowCardPreview,
 }: {
   card: any;
   setIsFlipped: Dispatch<SetStateAction<boolean>>;
+  handleUpdateStarred?: any;
+  setShowCardPreview: any;
 }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const { storeCard } = useContext(CardContext);
   const navigate = useNavigate();
+
+  console.log("card", card);
 
   return (
     <div
@@ -49,13 +55,13 @@ export const BackCard = ({
           </button>
           <button
             onClick={() => {
-              setIsFlipped(false);
-              setShowMenu(false);
+              handleUpdateStarred(card);
+              setShowCardPreview(null);
             }}
             className="flex flex-row gap-2 items-center"
           >
             <StarIcon />
-            Star
+            {card.isStarred ? t("Unstar") : t("Star")}
           </button>
         </div>
       )}

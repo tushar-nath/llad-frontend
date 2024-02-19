@@ -7,7 +7,7 @@ import { CardContext } from "../../contexts/cardContext";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export const Table = ({ columns, data }: any) => {
+export const Table = ({ columns, data, handleUpdateStarred }: any) => {
   const { t } = useTranslation();
   const [showCardPreview, setShowCardPreview] = useState<any>(null);
   const [showNotes, setShowNotes] = useState<any>(null);
@@ -17,11 +17,13 @@ export const Table = ({ columns, data }: any) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns: columns, data }, useSortBy);
 
+  console.log("card", showCardPreview);
+
   return (
     <>
       <table
         {...getTableProps()}
-        className="w-full table shadow-[1px_4px_22.299999237060547px_0px_#00000040] rounded-3xl bg-white"
+        className="w-full table shadow-[1px_4px_22.299999237060547px_0px_#00000040] bg-white"
       >
         <thead>
           {headerGroups.map((headerGroup: any, index: number) => (
@@ -101,11 +103,15 @@ export const Table = ({ columns, data }: any) => {
                 key="front"
                 card={showCardPreview}
                 setIsFlipped={setIsFlipped}
+                handleUpdateStarred={handleUpdateStarred}
+                setShowCardPreview={setShowCardPreview}
               />
               <BackCard
                 key="back"
                 card={showCardPreview}
                 setIsFlipped={setIsFlipped}
+                handleUpdateStarred={handleUpdateStarred}
+                setShowCardPreview={setShowCardPreview}
               />
             </ReactCardFlip>
           </div>

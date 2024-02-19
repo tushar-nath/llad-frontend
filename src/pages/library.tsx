@@ -7,6 +7,7 @@ import { UserContext } from "../contexts/userContext";
 import { BeatLoader } from "react-spinners";
 import { Header } from "../components/common/Header";
 import { useTranslation } from "react-i18next";
+import { SuccessModal } from "../components/common/SuccessModal";
 
 const Library = () => {
   const { t } = useTranslation();
@@ -15,6 +16,8 @@ const Library = () => {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [tags, setTags] = useState<string[]>([]);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const getCards = async () => {
     try {
@@ -74,6 +77,28 @@ const Library = () => {
     }
   };
 
+  const handleAddToStarred = async (card: any) => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/star-card`,
+        {
+          cardId: card._id,
+          userId: user?._id,
+          isStarred: !card.isStarred,
+        }
+      );
+      getCards();
+      setSuccessMessage(
+        card.isStarred
+          ? t("Card has been removed from starred")
+          : t("Card has been added to starred")
+      );
+      setShowSuccessModal(true);
+    } catch {
+      console.log("error");
+    }
+  };
+
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
       <Sidebar />
@@ -82,24 +107,33 @@ const Library = () => {
         <Header titleOne={t("Your Library")} titleTwo="" />
         {/* Main Content */}
         <LibraryHeader handleSearch={handleSearch} />
-        {isLoading ? (
-          <div className="flex items-center justify-center h-[70vh] w-full">
-            <BeatLoader color="#7573FF" />
-          </div>
-        ) : filteredCards && filteredCards.length === 0 ? (
-          <div className="flex items-center justify-center h-[70vh] w-full">
-            <h1 className="text-2xl text-gray-800 font-semibold">
-              {t("You have no cards in your library")}
-            </h1>
-          </div>
-        ) : (
-          <LibraryTable
-            cards={filteredCards}
-            handleFilterByTag={handleFilterByTag}
-            tags={tags}
-          />
-        )}
+        <div className="h-[70vh] w-full items-center justify-end overflow-y-scroll bg-white">
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[70vh] w-full">
+              <BeatLoader color="#7573FF" />
+            </div>
+          ) : filteredCards && filteredCards.length === 0 ? (
+            <div className="flex items-center justify-center h-[70vh] w-full">
+              <h1 className="text-2xl text-gray-800 font-semibold">
+                {t("You have no cards in your library")}
+              </h1>
+            </div>
+          ) : (
+            <LibraryTable
+              cards={filteredCards}
+              handleFilterByTag={handleFilterByTag}
+              tags={tags}
+              handleUpdateStarred={handleAddToStarred}
+            />
+          )}
+        </div>
       </div>
+      {showSuccessModal && (
+        <SuccessModal
+          handleClose={() => setShowSuccessModal(false)}
+          message={successMessage}
+        />
+      )}
     </div>
   );
 };

@@ -80,6 +80,7 @@ const Revision = () => {
                 card={cards[index]}
                 getCards={getCards}
                 updateIndex={setIndex}
+                setShowCardPreview={setShowCardPreview}
               />
             ) : (
               <h1 className="xl:text-2xl text-xl font-semibold text-bluePrimary">

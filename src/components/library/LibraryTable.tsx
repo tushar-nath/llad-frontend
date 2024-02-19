@@ -9,10 +9,12 @@ export const LibraryTable = ({
   cards,
   tags,
   handleFilterByTag,
+  handleUpdateStarred,
 }: {
   cards: any[];
   tags: string[];
   handleFilterByTag: (tag: string) => void;
+  handleUpdateStarred: any;
 }) => {
   const { t } = useTranslation();
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
@@ -124,12 +126,17 @@ export const LibraryTable = ({
       tags: card.tags.join(", "),
       dateModified: moment(card.updatedAt).format("DD/MM/YYYY"),
       note: card.note,
+      isStarred: card.isStarred,
     };
   });
 
   return (
     <div>
-      <Table columns={columns} data={data} />
+      <Table
+        columns={columns}
+        data={data}
+        handleUpdateStarred={handleUpdateStarred}
+      />
     </div>
   );
 };
