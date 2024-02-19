@@ -9,7 +9,7 @@ import axios from "axios";
 export const ProfileInfo = () => {
   const { t } = useTranslation();
   const { user, storeUser } = useContext(UserContext) as any;
-  const [userPhoneNo, setUserPhoneNo] = useState<string>(user?.phone || "");
+  const [userPhoneNo, setUserPhoneNo] = useState<string>(user?.phoneNumber || "");
   const [userName, setUserName] = useState<string>(user?.name || "");
   const [userEmail, setUserEmail] = useState<string>(user?.email || "");
   const [userAbout, setUserAbout] = useState<string>(user?.about || "");
