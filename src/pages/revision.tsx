@@ -44,6 +44,53 @@ const Revision = () => {
   };
 
   useEffect(() => {
+    // check if filter is present in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const filter = urlParams.get("filter");
+
+    if (filter) {
+      setShowCardPreview(true);
+      switch (filter) {
+        case "today":
+          const today = new Date().toISOString().split("T")[0];
+          const filteredCards = cards.filter((card) => card.dueDate === today);
+          setCards(filteredCards);
+          break;
+        case "last-week":
+          const lastWeek = new Date(
+            new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+          ).toISOString();
+          const filteredCardsLastWeek = cards.filter(
+            (card) =>
+              new Date(card.dueDate).getTime() > new Date(lastWeek).getTime()
+          );
+          setCards(filteredCardsLastWeek);
+          break;
+        case "last-15-days":
+          const last15Days = new Date(
+            new Date().getTime() - 15 * 24 * 60 * 60 * 1000
+          ).toISOString();
+          const filteredCardsLast15Days = cards.filter(
+            (card) =>
+              new Date(card.dueDate).getTime() > new Date(last15Days).getTime()
+          );
+          setCards(filteredCardsLast15Days);
+          break;
+        case "last-30-days":
+          const last30Days = new Date(
+            new Date().getTime() - 30 * 24 * 60 * 60 * 1000
+          ).toISOString();
+          const filteredCardsLast30Days = cards.filter(
+            (card) =>
+              new Date(card.dueDate).getTime() > new Date(last30Days).getTime()
+          );
+          setCards(filteredCardsLast30Days);
+          break;
+        default:
+          break;
+      }
+    }
+
     getCards();
     getTags();
     sortCards(cards);

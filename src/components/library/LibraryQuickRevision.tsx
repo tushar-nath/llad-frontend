@@ -1,8 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { ResetIcon } from "../../svgs/resetIcon";
+import { useNavigate } from "react-router-dom";
 
 export const LibraryQuickRevision = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-row items-center gap-4 bg-white px-4 py-3 border border-gray-300 hover:border-gray-400 transition-colors duration-300 rounded-[3rem] shadow-lg">
@@ -11,6 +13,9 @@ export const LibraryQuickRevision = () => {
         className="rounded-lg text-lg focus:outline-none focus:border-bluePrimary w-44 text-gray-900 font-medium"
         name="filters"
         id="filters"
+        onChange={(e) => {
+          navigate(`/revision?filter=${e.target.value}`);
+        }}
       >
         <option value="all">{t("Quick Revision")}</option>
         <option value="today">{t("Today")}</option>
