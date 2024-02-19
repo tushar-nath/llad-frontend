@@ -3,14 +3,17 @@ import { useTranslation } from "react-i18next";
 import { UserContext } from "../../contexts/userContext";
 import { UserPlaceholder } from "../../svgs/userPlaceholder";
 import { Tooltip } from "react-tooltip";
+import { InfoInput } from "./InfoInput";
+import axios from "axios";
 
 export const ProfileInfo = () => {
   const { t } = useTranslation();
-  const { user } = useContext(UserContext) as any;
+  const { user, storeUser } = useContext(UserContext) as any;
   const [userPhoneNo, setUserPhoneNo] = useState<string>(user?.phone || "");
   const [userName, setUserName] = useState<string>(user?.name || "");
   const [userEmail, setUserEmail] = useState<string>(user?.email || "");
   const [userAbout, setUserAbout] = useState<string>(user?.about || "");
+  const [isEditable, setIsEditable] = useState<boolean>(false);
   const [userKYCStatus, setUserKYCStatus] = useState<string>(
     user?.kycStatus || ""
   );
@@ -20,6 +23,25 @@ export const ProfileInfo = () => {
   const [userProfilePicture, setUserProfilePicture] = useState<string>(
     user?.profilePicture || ""
   );
+
+  const handleUpdate = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/update-account-details`,
+        {
+          userId: user?._id,
+          name: userName,
+          email: userEmail,
+          phoneNumber: userPhoneNo,
+          about: userAbout,
+        }
+      );
+      storeUser(res.data.user);
+      setIsEditable(!isEditable);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4 items-center justify-center w-[900px]">
@@ -47,48 +69,27 @@ export const ProfileInfo = () => {
           <p className="text-sm font-semibold text-gray-600">
             {t("Your Name")}
           </p>
-          <div className="flex gap-4 justify-between items-center">
-            <input
-              type="text"
-              placeholder="Add Name"
-              value={userName}
-              className="text-sm font-semibold text-gray-900 outline-none"
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            <button className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl">
-              Edit
-            </button>
-          </div>
+          <InfoInput
+            value={userName}
+            setValue={setUserName}
+            handleUpdate={handleUpdate}
+          />
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-semibold text-gray-600">{t("Email")}</p>
-          <div className="flex gap-4 justify-between items-center">
-            <input
-              type="text"
-              placeholder="Add Email"
-              value={userEmail}
-              className="text-sm font-semibold text-gray-900 outline-none"
-              onChange={(e) => setUserEmail(e.target.value)}
-            />
-            <button className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl">
-              Edit
-            </button>
-          </div>
+          <InfoInput
+            value={userEmail}
+            setValue={setUserEmail}
+            handleUpdate={handleUpdate}
+          />
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-semibold text-gray-600">{t("Phone")}</p>
-          <div className="flex gap-4 justify-between items-center">
-            <input
-              type="text"
-              placeholder="Add Phone Number"
-              value={userPhoneNo}
-              className="text-sm font-semibold text-gray-900 outline-none"
-              onChange={(e) => setUserPhoneNo(e.target.value)}
-            />
-            <button className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl">
-              Edit
-            </button>
-          </div>
+          <InfoInput
+            value={userPhoneNo}
+            setValue={setUserPhoneNo}
+            handleUpdate={handleUpdate}
+          />
         </div>
       </div>
       <div className="flex flex-col gap-2 border border-gray-200 w-full py-3 px-60 rounded-lg shadow-md">
@@ -101,15 +102,24 @@ export const ProfileInfo = () => {
               {user?.name}
             </h2>
           </div>
-          <button className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl">
-            Edit
+          <button
+            className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl"
+            onClick={() => {
+              if (isEditable) {
+                handleUpdate();
+              }
+              setIsEditable(!isEditable);
+            }}
+          >
+            {isEditable ? "Save" : "Edit"}
           </button>
         </div>
         <textarea
           value={userAbout}
           onChange={(e) => setUserAbout(e.target.value)}
-          className="w-full h-24 text-sm font-semibold text-gray-900 outline-none resize-none"
+          className="w-full h-24 text-sm font-semibold text-gray-900 bg-white outline-none resize-none"
           placeholder="Add a short bio about yourself"
+          disabled={!isEditable}
         ></textarea>
       </div>
       <div className="flex flex-col gap-2 border border-gray-200 w-full py-3 px-60 rounded-lg shadow-md">
