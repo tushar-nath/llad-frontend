@@ -78,6 +78,7 @@ export const ProfileInfo = () => {
         <div className="flex flex-col gap-1">
           <p className="text-sm font-semibold text-gray-600">{t("Email")}</p>
           <InfoInput
+            type="email"
             value={userEmail}
             setValue={setUserEmail}
             handleUpdate={handleUpdate}

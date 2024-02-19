@@ -50,7 +50,7 @@ const Revision = () => {
 
     if (filter) {
       setShowCardPreview(true);
-      console.log(cards)
+      console.log(cards);
       switch (filter) {
         case "today":
           const today = new Date().toISOString().split("T")[0];
