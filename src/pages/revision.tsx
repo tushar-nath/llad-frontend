@@ -44,19 +44,13 @@ const Revision = () => {
   };
 
   useEffect(() => {
-    getCards();
-    getTags();
-    sortCards(cards);
-  }, []);
-
-  useEffect(() => {
     // check if filter is present in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const filter = urlParams.get("filter");
 
     if (filter) {
       setShowCardPreview(true);
-      console.log(cards);
+      console.log(cards)
       switch (filter) {
         case "today":
           const today = new Date().toISOString().split("T")[0];
@@ -97,7 +91,11 @@ const Revision = () => {
           break;
       }
     }
-  }, [cards]);
+
+    getCards();
+    getTags();
+    sortCards(cards);
+  }, []);
 
   const sortCards = (cards: any[]) => {
     return cards.sort((a, b) => {
