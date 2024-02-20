@@ -78,6 +78,7 @@ export const ProfileInfo = () => {
             {t("Your Name")}
           </p>
           <InfoInput
+            oldValue={user?.name}
             value={userName}
             setValue={setUserName}
             handleUpdate={handleUpdate}
@@ -87,6 +88,7 @@ export const ProfileInfo = () => {
         <div className="flex flex-col gap-1">
           <p className="text-sm font-semibold text-gray-600">{t("Email")}</p>
           <InfoInput
+            oldValue={user?.email}
             type="email"
             value={userEmail}
             setValue={setUserEmail}
@@ -97,6 +99,7 @@ export const ProfileInfo = () => {
         <div className="flex flex-col gap-1">
           <p className="text-sm font-semibold text-gray-600">{t("Phone")}</p>
           <InfoInput
+            oldValue={user?.phoneNumber}
             value={userPhoneNo}
             setValue={setUserPhoneNo}
             handleUpdate={handleUpdate}
@@ -117,7 +120,7 @@ export const ProfileInfo = () => {
           <button
             className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl"
             onClick={() => {
-              if (isEditable) {
+              if (isEditable && userAbout !== user?.about) {
                 handleUpdate();
               }
               setIsEditable(!isEditable);
@@ -136,7 +139,7 @@ export const ProfileInfo = () => {
           disabled={!isEditable}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              if (isEditable) {
+              if (isEditable && userAbout !== user?.about) {
                 handleUpdate();
               }
               setIsEditable(!isEditable);

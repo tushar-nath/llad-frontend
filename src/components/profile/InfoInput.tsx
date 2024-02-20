@@ -3,12 +3,14 @@ import { UserContext } from "../../contexts/userContext";
 
 export const InfoInput = ({
   type,
+  oldValue,
   value,
   setValue,
   handleUpdate,
   placeholder,
 }: {
   type?: string;
+  oldValue: string;
   value: string;
   setValue: (value: string) => void;
   handleUpdate?: () => void;
@@ -30,7 +32,11 @@ export const InfoInput = ({
         disabled={!isEditable}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            if (isEditable && handleUpdate) {
+            if (
+              isEditable &&
+              handleUpdate &&
+              value.toString() !== oldValue.toString()
+            ) {
               handleUpdate();
             }
             setIsEditable(!isEditable);
@@ -43,7 +49,11 @@ export const InfoInput = ({
         <button
           className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl"
           onClick={() => {
-            if (isEditable && handleUpdate) {
+            if (
+              isEditable &&
+              handleUpdate &&
+              value.toString() !== oldValue.toString()
+            ) {
               handleUpdate();
             }
             setIsEditable(!isEditable);
