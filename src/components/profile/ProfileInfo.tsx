@@ -5,6 +5,7 @@ import { UserPlaceholder } from "../../svgs/userPlaceholder";
 import { Tooltip } from "react-tooltip";
 import { InfoInput } from "./InfoInput";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export const ProfileInfo = () => {
   const { t } = useTranslation();
@@ -38,6 +39,7 @@ export const ProfileInfo = () => {
           about: userAbout,
         }
       );
+      toast.success("Profile updated successfully");
       storeUser(res.data.user);
       setIsEditable(false);
     } catch (error) {
@@ -132,6 +134,14 @@ export const ProfileInfo = () => {
           } ${!isEditable ? "cursor-default" : ""}`}
           placeholder="Add a short bio about yourself"
           disabled={!isEditable}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              if (isEditable) {
+                handleUpdate();
+              }
+              setIsEditable(!isEditable);
+            }
+          }}
         ></textarea>
       </div>
       <div className="flex flex-col gap-2 border border-gray-200 w-full py-3 px-60 rounded-lg shadow-md">
@@ -160,7 +170,20 @@ export const ProfileInfo = () => {
             {t("View")}
           </button>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
+
       <Tooltip
         className="!max-w-[32rem] !z-[100] !bg-grayBg !text-bluePrimary !font-medium !border-borderColor !rounded-lg !shadow-md"
         id="coming-soon-tooltip"

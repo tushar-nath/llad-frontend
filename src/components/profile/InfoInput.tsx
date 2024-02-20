@@ -16,6 +16,7 @@ export const InfoInput = ({
 }) => {
   const [isEditable, setIsEditable] = useState<boolean>(false);
   const { user } = useContext(UserContext) as any;
+
   return (
     <div className="flex gap-4 justify-between items-center">
       <input
@@ -27,8 +28,16 @@ export const InfoInput = ({
         } ${!isEditable ? "cursor-default" : ""}`}
         onChange={(e) => setValue(e.target.value)}
         disabled={!isEditable}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            if (isEditable && handleUpdate) {
+              handleUpdate();
+            }
+            setIsEditable(!isEditable);
+          }
+        }}
       />
-      {user?.googleId && type == "email" ? (
+      {user?.googleId && type === "email" ? (
         <></>
       ) : (
         <button

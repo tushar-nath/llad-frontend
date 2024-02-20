@@ -15,6 +15,7 @@ import Library from "./pages/library";
 import Revision from "./pages/revision";
 
 import "./styles/index.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./i18n";
 import Profile from "./pages/profile";
 
