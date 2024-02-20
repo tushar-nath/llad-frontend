@@ -135,7 +135,7 @@ const Login = () => {
                   onClick={handleResetPassword}
                   disabled={loading}
                 >
-                  {!loading ? (
+                  {loading ? (
                     <BeatLoader color="#7573FF" size={8} />
                   ) : (
                     "  Forgot Password?"
