@@ -12,6 +12,7 @@ import { EyeIcon } from "../../svgs/eyeIcon";
 import { EyeCloseIcon } from "../../svgs/eyeCloseIcon";
 import { SuccessModal } from "../../components/common/SuccessModal";
 import { ErrorModal } from "../../components/common/ErrorModal";
+import { BeatLoader } from "react-spinners";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -23,6 +24,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const url = window.location.href;
@@ -50,7 +52,7 @@ const Login = () => {
         {
           email: email,
           password: password,
-        },
+        }
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
       storeUser(res.data.user);
@@ -75,15 +77,18 @@ const Login = () => {
       return;
     }
     try {
+      setLoading(true);
       await axios.post(
         `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/forgot-password`,
         {
           email: email,
-        },
+        }
       );
+      setLoading(false);
       setShowSuccessModal(true);
     } catch (error: any) {
       console.error(error);
+      setLoading(false);
       if (error.response.status === 400) {
         setShowErrorModal(true);
         setErrorMessage("Invalid email address, please try again.");
@@ -128,8 +133,13 @@ const Login = () => {
                 <button
                   className="text-bluePrimary hover:text-[#8b89ff] font-medium text-sm"
                   onClick={handleResetPassword}
+                  disabled={loading}
                 >
-                  Forgot Password?
+                  {!loading ? (
+                    <BeatLoader color="#7573FF" size={8} />
+                  ) : (
+                    "  Forgot Password?"
+                  )}
                 </button>
               </div>
             </div>
