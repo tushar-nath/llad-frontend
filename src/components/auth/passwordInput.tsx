@@ -10,6 +10,13 @@ interface PasswordInputProps {
   strength: number;
 }
 
+export const strengthColors = [
+  { color: "text-red-600" },
+  { color: "text-orange-600" },
+  { color: "text-yellow-600" },
+  { color: "text-green-600" },
+];
+
 const PasswordInput = ({
   placeholder,
   setValue,
@@ -20,13 +27,6 @@ const PasswordInput = ({
 }: PasswordInputProps) => {
   const [passwordStrengthLevel, setPasswordStrengthLevel] =
     useState<string>("");
-
-  const strengthColors = [
-    { color: "text-red-600" },
-    { color: "text-orange-600" },
-    { color: "text-yellow-600" },
-    { color: "text-green-600" },
-  ];
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
