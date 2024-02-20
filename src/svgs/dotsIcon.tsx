@@ -6,6 +6,7 @@ export const DotsIcon = () => {
       viewBox="0 0 5 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6"
     >
       <circle cx="2.5" cy="2.5" r="2.5" fill="black" />
       <circle cx="2.5" cy="10.5" r="2.5" fill="black" />

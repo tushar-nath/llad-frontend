@@ -28,7 +28,9 @@ const Edit = () => {
     card ? card.norwegianExample : ""
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
-  const [tags, setTags] = useState<string[]>(card ? card.tags.split(",") : []);
+  const [tags, setTags] = useState<string[]>(
+    card && card.tags.length > 0 ? card.tags.split(",") : []
+  );
   const { user } = useContext(UserContext);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const [saving, setSaving] = useState<boolean>(false);

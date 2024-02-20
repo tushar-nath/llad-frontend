@@ -11,11 +11,13 @@ const CardPreview = ({
   getCards,
   updateIndex,
   setShowCardPreview,
+  handleUpdateStarred,
 }: {
   card: any;
   getCards: any;
   updateIndex: any;
   setShowCardPreview: any;
+  handleUpdateStarred: any;
 }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const { user } = useContext(UserContext);
@@ -46,12 +48,14 @@ const CardPreview = ({
             card={card}
             setIsFlipped={setIsFlipped}
             setShowCardPreview={setShowCardPreview}
+            handleUpdateStarred={handleUpdateStarred}
           />
           <BackCard
             key="back"
             card={card}
             setIsFlipped={setIsFlipped}
             setShowCardPreview={setShowCardPreview}
+            handleUpdateStarred={handleUpdateStarred}
           />
         </ReactCardFlip>
         {isFlipped && <GradeSelector handleGrade={handleGrade} card={card} />}

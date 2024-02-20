@@ -14,7 +14,7 @@ export const BackCard = ({
 }: {
   card: any;
   setIsFlipped: Dispatch<SetStateAction<boolean>>;
-  handleUpdateStarred?: any;
+  handleUpdateStarred: any;
   setShowCardPreview: any;
 }) => {
   const { t } = useTranslation();
@@ -45,7 +45,23 @@ export const BackCard = ({
         <div className="absolute flex flex-col top-14 right-8 bg-[#E5E5E5] text-bluePrimary font-semibold gap-2 shadow-lg rounded-lg p-4">
           <button
             onClick={() => {
-              storeCard(card);
+              storeCard({
+                englishWord: card?.front?.text
+                  ? card.front.text
+                  : card.englishWord,
+                englishExample: card?.front?.example
+                  ? card.front.example
+                  : card.englishExample,
+                norwegianWord: card?.back?.text
+                  ? card.back.text
+                  : card.nativeWord,
+                norwegianExample: card?.back?.example
+                  ? card.back.example
+                  : card.nativeExample,
+                note: card.note,
+                tags: card.tags,
+                _id: card._id,
+              });
               navigate("/edit");
             }}
             className="border-b border-gray-400 pb-2 flex flex-row gap-2 items-center"

@@ -8,6 +8,7 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { Header } from "../components/common/Header";
 import { useTranslation } from "react-i18next";
+import { SuccessModal } from "../components/common/SuccessModal";
 
 const Revision = () => {
   const { t } = useTranslation();
@@ -17,6 +18,8 @@ const Revision = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [index, setIndex] = useState<number>(0);
   const [tags, setTags] = useState<string[]>([]);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const getCards = async () => {
     try {
@@ -110,6 +113,28 @@ const Revision = () => {
     setShowCardPreview(true);
   };
 
+  const handleAddToStarred = async (card: any) => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/star-card`,
+        {
+          cardId: card._id,
+          userId: user?._id,
+          isStarred: !card.isStarred,
+        }
+      );
+      getCards();
+      setSuccessMessage(
+        card.isStarred
+          ? t("Card has been removed from starred")
+          : t("Card has been added to starred")
+      );
+      setShowSuccessModal(true);
+    } catch {
+      console.log("error");
+    }
+  };
+
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
       <Sidebar />
@@ -129,6 +154,7 @@ const Revision = () => {
                 getCards={getCards}
                 updateIndex={setIndex}
                 setShowCardPreview={setShowCardPreview}
+                handleUpdateStarred={handleAddToStarred}
               />
             ) : (
               <h1 className="xl:text-2xl text-xl font-semibold text-bluePrimary">
@@ -151,6 +177,12 @@ const Revision = () => {
           </div>
         )}
       </div>
+      {showSuccessModal && (
+        <SuccessModal
+          handleClose={() => setShowSuccessModal(false)}
+          message={successMessage}
+        />
+      )}
     </div>
   );
 };
