@@ -60,7 +60,7 @@ const Login = () => {
     } catch (error: any) {
       console.error(error);
       if (error.response.status === 400) {
-        alert("Invalid credentials, please create an account.");
+        alert(error.response.data.error);
         return;
       }
     }
