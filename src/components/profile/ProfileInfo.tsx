@@ -127,7 +127,9 @@ export const ProfileInfo = () => {
         <textarea
           value={userAbout}
           onChange={(e) => setUserAbout(e.target.value)}
-          className="w-full h-24 text-sm font-semibold text-gray-900 bg-white outline-none resize-none"
+          className={`w-full h-24 text-sm font-semibold text-gray-900 bg-white outline-none resize-none ${
+            isEditable ? "border-[1.5px] rounded-lg p-2 border-bluePrimary" : ""
+          } ${!isEditable ? "cursor-default" : ""}`}
           placeholder="Add a short bio about yourself"
           disabled={!isEditable}
         ></textarea>

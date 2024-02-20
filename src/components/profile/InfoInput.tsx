@@ -22,7 +22,9 @@ export const InfoInput = ({
         type="text"
         placeholder={placeholder}
         value={value}
-        className="text-sm font-semibold text-gray-900 outline-none bg-white w-48"
+        className={`text-sm font-semibold text-gray-900 outline-none bg-white w-48 ${
+          isEditable ? "border-b-2 border-bluePrimary" : ""
+        } ${!isEditable ? "cursor-default" : ""}`}
         onChange={(e) => setValue(e.target.value)}
         disabled={!isEditable}
       />
