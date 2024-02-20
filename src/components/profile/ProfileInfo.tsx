@@ -47,6 +47,44 @@ export const ProfileInfo = () => {
     }
   };
 
+  const handleChoosePicture = async () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.click();
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (file) {
+        if (file.size > 4 * 1024 * 1024) {
+          toast.error("File size is too large, please choose a smaller file");
+          return;
+        }
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async () => {
+          const base64Image = reader.result;
+          await updateUserProfilePicture(base64Image);
+        };
+      }
+    };
+  };
+
+  const updateUserProfilePicture = async (base64Image: any) => {
+    try {
+      const res = await axios.patch(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/update-profile-picture`,
+        {
+          userId: user?._id,
+          profilePicture: base64Image,
+        }
+      );
+      toast.success("Profile picture updated successfully");
+      storeUser(res.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 items-center justify-center w-[900px]">
       <div className="flex items-center justify-between w-full px-60">
@@ -65,8 +103,7 @@ export const ProfileInfo = () => {
         <div>
           <button
             className="text-gray-700 font-bold text-[10px] bg-[#F0EFFA] py-1.5 px-4 rounded-3xl"
-            data-tooltip-content="Coming soon"
-            data-tooltip-id="coming-soon-tooltip"
+            onClick={handleChoosePicture}
           >
             Change Picture
           </button>

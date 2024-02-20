@@ -25,7 +25,7 @@ export const InfoInput = ({
         type="text"
         placeholder={placeholder}
         value={value}
-        className={`text-sm font-semibold text-gray-900 outline-none bg-white w-48 ${
+        className={`text-sm font-semibold text-gray-900 outline-none bg-white w-60 ${
           isEditable ? "border-b-2 border-bluePrimary" : ""
         } ${!isEditable ? "cursor-default" : ""}`}
         onChange={(e) => setValue(e.target.value)}
@@ -35,7 +35,7 @@ export const InfoInput = ({
             if (
               isEditable &&
               handleUpdate &&
-              value.toString() !== oldValue.toString()
+              value?.toString() !== oldValue?.toString()
             ) {
               handleUpdate();
             }
@@ -52,7 +52,7 @@ export const InfoInput = ({
             if (
               isEditable &&
               handleUpdate &&
-              value.toString() !== oldValue.toString()
+              value?.toString() !== oldValue?.toString()
             ) {
               handleUpdate();
             }
