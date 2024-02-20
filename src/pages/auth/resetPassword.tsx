@@ -5,10 +5,15 @@ import { useNavigate } from "react-router-dom";
 import AuthButton from "../../components/auth/authButton";
 import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
+import { ErrorModal } from "../../components/common/ErrorModal";
+import { SuccessModal } from "../../components/common/SuccessModal";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState<string>("");
   const [token, setToken] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const { storeUser } = useContext(UserContext);
 
@@ -44,11 +49,12 @@ const ResetPassword = () => {
         {
           token: token,
           newPassword: password,
-        },
+        }
       );
-      alert("Password Reset Successfully, proceed with login");
+      setShowSuccessModal(true);
     } catch (error: any) {
-      alert("Failed to Reset Password, please try again");
+      setErrorMessage(error.response.data.error);
+      setShowErrorModal(true);
     }
   };
 
@@ -78,6 +84,15 @@ const ResetPassword = () => {
           <AuthButton label="Reset" handleAuth={handleReset} />
         </div>
       </div>
+      {showErrorModal && (
+        <ErrorModal message={errorMessage} handleClose={() => navigate("/")} />
+      )}
+      {showSuccessModal && (
+        <SuccessModal
+          message="Password reset successfully, proceed with login"
+          handleClose={() => navigate("/")}
+        />
+      )}
     </div>
   );
 };
