@@ -5,19 +5,18 @@ import { BackCard } from "./BackCard";
 import { GradeSelector } from "./GradeSelector";
 import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const CardPreview = ({
   card,
   getCards,
   updateIndex,
   setShowCardPreview,
-  handleUpdateStarred,
 }: {
   card: any;
   getCards: any;
   updateIndex: any;
   setShowCardPreview: any;
-  handleUpdateStarred: any;
 }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const { user } = useContext(UserContext);
@@ -36,6 +35,29 @@ const CardPreview = ({
       setIsFlipped(false);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleUpdateStarred = async (card: any) => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/star-card`,
+        {
+          cardId: card._id,
+          userId: user?._id,
+          isStarred: !card.isStarred,
+        }
+      );
+
+      card.isStarred = !card.isStarred;
+      setShowCardPreview(true);
+      toast.success(
+        !card.isStarred
+          ? "Card has been removed from starred"
+          : "Card has been added to starred"
+      );
+    } catch {
+      console.log("error");
     }
   };
 
@@ -59,6 +81,7 @@ const CardPreview = ({
           />
         </ReactCardFlip>
         {isFlipped && <GradeSelector handleGrade={handleGrade} card={card} />}
+        <ToastContainer />
       </div>
     </div>
   );

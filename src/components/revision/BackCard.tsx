@@ -26,8 +26,8 @@ export const BackCard = ({
     <div
       className="flex flex-col gap-4 shadow-[0px_4px_44.099998474121094px_0px_#0000004F] w-[600px] h-[400px] rounded-[3rem] px-6 py-4 justify-center items-center relative bg-white"
       onClick={() => {
-        setIsFlipped((prev) => !prev);
         setShowMenu(false);
+        setIsFlipped((prev) => !prev);
       }}
     >
       <button
@@ -69,9 +69,10 @@ export const BackCard = ({
             Edit Card
           </button>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               handleUpdateStarred(card);
-              setShowCardPreview(null);
+              setShowMenu(false);
             }}
             className="flex flex-row gap-2 items-center"
           >

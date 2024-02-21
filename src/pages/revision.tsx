@@ -129,28 +129,6 @@ const Revision = () => {
     setShowCardPreview(true);
   };
 
-  const handleAddToStarred = async (card: any) => {
-    try {
-      await axios.post(
-        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/star-card`,
-        {
-          cardId: card._id,
-          userId: user?._id,
-          isStarred: !card.isStarred,
-        }
-      );
-      getCards();
-      setSuccessMessage(
-        card.isStarred
-          ? t("Card has been removed from starred")
-          : t("Card has been added to starred")
-      );
-      setShowSuccessModal(true);
-    } catch {
-      console.log("error");
-    }
-  };
-
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
       <Sidebar />
@@ -170,7 +148,6 @@ const Revision = () => {
                 getCards={getCards}
                 updateIndex={setIndex}
                 setShowCardPreview={setShowCardPreview}
-                handleUpdateStarred={handleAddToStarred}
               />
             ) : (
               <h1 className="xl:text-2xl text-xl font-semibold text-bluePrimary">
