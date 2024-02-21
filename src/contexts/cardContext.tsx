@@ -9,6 +9,7 @@ interface CardContextProps {
     norwegianExample: string;
     note: string;
     tags: string[];
+    location?: string;
   } | null;
   storeCard: (cardData: {
     _id: string;
@@ -18,6 +19,7 @@ interface CardContextProps {
     norwegianExample: string;
     note: string;
     tags: string[];
+    location?: string;
   }) => void;
   removeCard: () => void;
 }
@@ -39,6 +41,7 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({
     norwegianExample: string;
     note: string;
     tags: string[];
+    location?: string;
   } | null>(null);
 
   const storeCard = useCallback(
@@ -50,6 +53,7 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({
       norwegianExample: string;
       note: string;
       tags: string[];
+      location?: string;
     }) => {
       setCard(cardData);
     },

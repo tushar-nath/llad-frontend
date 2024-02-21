@@ -46,10 +46,26 @@ const Revision = () => {
     }
   };
 
+  const sortById = (cards: any[], id: string) => {
+    const index = cards.findIndex((card) => card._id === id);
+    const card = cards[index];
+    cards.splice(index, 1);
+    cards.unshift(card);
+    return cards;
+  };
+
   useEffect(() => {
     // check if filter is present in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const filter = urlParams.get("filter");
+    const cardId = urlParams.get("cardId");
+
+    if (cardId) {
+      setShowCardPreview(true);
+      const sortedCards = sortById(cards, cardId);
+      setCards(sortedCards);
+      window.history.pushState({}, document.title, window.location.pathname);
+    }
 
     if (filter) {
       setShowCardPreview(true);

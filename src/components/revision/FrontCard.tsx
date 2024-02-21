@@ -56,6 +56,8 @@ export const FrontCard = ({
                 note: card.note,
                 tags: card.tags,
                 _id: card._id,
+                // storing location url to redirect to the same page after editing
+                location: window.location.pathname,
               });
               navigate("/edit");
             }}

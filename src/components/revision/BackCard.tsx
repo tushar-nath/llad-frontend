@@ -59,6 +59,7 @@ export const BackCard = ({
                 note: card.note,
                 tags: card.tags,
                 _id: card._id,
+                location: window.location.pathname,
               });
               navigate("/edit");
             }}

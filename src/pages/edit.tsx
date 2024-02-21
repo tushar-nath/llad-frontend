@@ -65,7 +65,13 @@ const Edit = () => {
 
   const handleClose = () => {
     setShowSuccessModal(false);
-    navigate("/library");
+    console.log(card?.location);
+    const redirect = card?.location ? card.location : "/library";
+    navigate(
+      redirect.includes("revision")
+        ? `/revision?cardId=${card?._id}`
+        : "/library"
+    );
   };
 
   return (
