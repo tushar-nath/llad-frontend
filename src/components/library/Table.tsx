@@ -71,6 +71,8 @@ export const Table = ({ columns, data, handleUpdateStarred }: any) => {
                         navigate("/edit");
                       } else if (cellIndex === 5) {
                         setShowNotes(row.original);
+                      } else if (cellIndex === 6) {
+                        return;
                       } else {
                         setShowCardPreview(row.original);
                       }

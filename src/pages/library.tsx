@@ -20,6 +20,9 @@ const Library = () => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isFilteredByStarred, setIsFilteredByStarred] =
     useState<boolean>(false);
+  const [showDeleteCardModal, setShowDeleteCardModal] =
+    useState<boolean>(false);
+  const [cardToDelete, setCardToDelete] = useState<string>("");
 
   const getCards = async () => {
     try {
@@ -101,6 +104,31 @@ const Library = () => {
     }
   };
 
+  const handleDeleteCard = async (cardId: string) => {
+    try {
+      const body = {
+        cardId,
+        userId: user?._id,
+      };
+      await axios.delete(
+        `${process.env.REACT_APP_NODE_SERVER_BASE_URL}/api/v1/delete-card`,
+        {
+          data: body,
+        }
+      );
+      getCards();
+      setSuccessMessage(t("Card has been deleted"));
+      setShowSuccessModal(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = (cardId: string) => {
+    setCardToDelete(cardId);
+    setShowDeleteCardModal(true);
+  };
+
   return (
     <div className="bg-white w-full h-[100vh] flex gap-12 pl-5 pr-14 py-12">
       <Sidebar />
@@ -138,6 +166,7 @@ const Library = () => {
               handleFilterByTag={handleFilterByTag}
               tags={tags}
               handleUpdateStarred={handleAddToStarred}
+              handleDeleteCard={handleDelete}
             />
           )}
         </div>
@@ -147,6 +176,37 @@ const Library = () => {
           handleClose={() => setShowSuccessModal(false)}
           message={successMessage}
         />
+      )}
+      {showDeleteCardModal && (
+        <div className="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50">
+          <div className="flex justify-center items-center w-full h-full">
+            <div className="flex flex-col bg-white w-[500px] h-[200px] rounded-3xl shadow-[5px_4px_30.100000381469727px_0px_#00000040] p-8">
+              <h1 className="text-2xl font-bold text-bluePrimary mb-4">
+                {t("Delete Card")}
+              </h1>
+              <p className="text-lg font-semibold text-gray-700">
+                {t("Are you sure you want to delete this card?")}
+              </p>
+              <div className="flex justify-center w-full gap-4 mt-auto">
+                <button
+                  className="flex-1 text-lg font-semibold text-gray-500 hover:bg-gray-100 hover:text-gray-500 rounded-md py-2 px-4"
+                  onClick={() => setShowDeleteCardModal(false)}
+                >
+                  {t("Cancel")}
+                </button>
+                <button
+                  className="flex-1 text-lg font-semibold text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md py-2 px-4"
+                  onClick={() => {
+                    handleDeleteCard(cardToDelete);
+                    setShowDeleteCardModal(false);
+                  }}
+                >
+                  {t("Delete")}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

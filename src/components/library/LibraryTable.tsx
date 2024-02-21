@@ -4,17 +4,20 @@ import { FilterIcon } from "../../svgs/filterIcon";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { TrashIcon } from "../../svgs/trashIcon";
 
 export const LibraryTable = ({
   cards,
   tags,
   handleFilterByTag,
   handleUpdateStarred,
+  handleDeleteCard,
 }: {
   cards: any[];
   tags: string[];
   handleFilterByTag: (tag: string) => void;
   handleUpdateStarred: any;
+  handleDeleteCard: any;
 }) => {
   const { t } = useTranslation();
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
@@ -126,6 +129,17 @@ export const LibraryTable = ({
         );
       },
       accessor: "note",
+    },
+    {
+      Header: "",
+      accessor: "_id",
+      Cell: (row: any) => {
+        return (
+          <button onClick={() => handleDeleteCard(row.value)}>
+            <TrashIcon />
+          </button>
+        );
+      },
     },
   ];
 
