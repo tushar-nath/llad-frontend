@@ -22,8 +22,6 @@ export const BackCard = ({
   const { storeCard } = useContext(CardContext);
   const navigate = useNavigate();
 
-  console.log("card", card);
-
   return (
     <div
       className="flex flex-col gap-4 shadow-[0px_4px_44.099998474121094px_0px_#0000004F] w-[600px] h-[400px] rounded-[3rem] px-6 py-4 justify-center items-center relative bg-white"
@@ -54,10 +52,10 @@ export const BackCard = ({
                   : card.englishExample,
                 norwegianWord: card?.back?.text
                   ? card.back.text
-                  : card.nativeWord,
+                  : card.norwegianWord,
                 norwegianExample: card?.back?.example
                   ? card.back.example
-                  : card.nativeExample,
+                  : card.norwegianExample,
                 note: card.note,
                 tags: card.tags,
                 _id: card._id,

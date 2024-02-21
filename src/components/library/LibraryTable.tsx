@@ -82,6 +82,20 @@ export const LibraryTable = ({
         );
       },
       accessor: "tags",
+      Cell: (row: any) => {
+        return (
+          <div className="flex flex-row gap-1.5 items-center">
+            {row.value.map((tag: string, index: number) => (
+              <button
+                key={index}
+                className="text-gray-900 text-base font-semibold bg-gray-100 px-1.5 py-1.5 rounded"
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        );
+      },
     },
     {
       Header: (row: any) => {
@@ -123,7 +137,7 @@ export const LibraryTable = ({
       norwegianExample: card.back.example,
       englishWord: card.front.text,
       englishExample: card.front.example,
-      tags: card.tags.join(", "),
+      tags: card.tags,
       dateModified: moment(card.updatedAt).format("DD/MM/YYYY"),
       note: card.note,
       isStarred: card.isStarred,

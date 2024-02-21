@@ -29,7 +29,7 @@ const Edit = () => {
   );
   const [note, setNote] = useState<string>(card ? card.note : "");
   const [tags, setTags] = useState<string[]>(
-    card && card.tags.length > 0 ? card.tags.split(",") : []
+    card && card.tags.length > 0 ? card.tags : []
   );
   const { user } = useContext(UserContext);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);

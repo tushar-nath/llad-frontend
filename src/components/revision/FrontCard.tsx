@@ -49,10 +49,10 @@ export const FrontCard = ({
                   : card.englishExample,
                 norwegianWord: card?.back?.text
                   ? card.back.text
-                  : card.nativeWord,
+                  : card.norwegianWord,
                 norwegianExample: card?.back?.example
                   ? card.back.example
-                  : card.nativeExample,
+                  : card.norwegianExample,
                 note: card.note,
                 tags: card.tags,
                 _id: card._id,
